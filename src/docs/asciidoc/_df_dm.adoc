@@ -223,7 +223,7 @@ A-\->>o<\<--B
 
 == Conduite de l'analyse
 
-Ce chapitre introduit 2 règles à suivre lorsqu'on analyse des données en vue de modéliser le domaine métier.
+Ce chapitre introduit 2 principes à suivre lorsqu'on analyse des données en vue de modéliser le domaine métier.
 
 Les deux règles sont des outils précieux en vue d'établir une base de données *cohérentes* et *sans doublons*.
 
@@ -231,7 +231,7 @@ Rappel : Ne sont considérées ici que les dépendances *directes* et *élément
 
 
 ====
-*Règle 1*
+*Principe 1*
 
 Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B \->> A,
 seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
@@ -239,14 +239,20 @@ seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
 ====
 
 ====
-*Règle 2*
+*Principe 2*
 
-Toute source multi-attributs d'une DF (DF à partie gauche composée) se doit d'être une
-DMR élémentaire et directe (prévisage d'une relation type many-to-many).
+Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple (A,B,C) -> D,E ) se doit d'être une
+DMR élémentaire et directe entre ses membres (prévisage d'une relation type many-to-many).
 
 En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :
 
   (A, B) -> (A, B)   <=>   A -->>o<<-- B   <=>   (A,B)
+
+NOTE: pour les source à n attributs, il faut vérifier les qualités directes et élémentaires.
+
+  (A, B, C)  <=>   A -->>o<<-- B , A -->>o<<-- C, B -->>o<<-- C
+  et vérifier l'absence d'une DF cachée comme : (B, C) -> A par exemple (en application du principe 1)
+
 
 ====
 
