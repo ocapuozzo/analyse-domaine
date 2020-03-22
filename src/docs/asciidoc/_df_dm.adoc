@@ -1,0 +1,431 @@
+= Notions de DF et DMR
+ifndef::backend-pdf[]
+:imagesdir: images
+endif::[]
+
+== Introduction
+
+En phase d'analyse, la collecte des données et leurs relations est au centre des préoccupations.
+
+
+image:analyse-artefacts.png[title="artefacts et analyse"]
+
+Après avoir indentifier des concepts métier clés, ces derniers seront **regroupés** (en référence au concept d'_encapsulation_ et de _classe_) et placés
+en relation de dépendances (_association_, _heritage_).
+
+Notion de **D**épendance **F**onctionnelle (*DF*) et **D**épendance **M**ultivaluée (*DM*)
+
+== Dépendance Fonctionnelle
+
+soit A et B, deux données (concept métier) du système.
+
+====
+
+*Def* : Lorsqu'une valeur de A (une donnée) permet, au plus, de connaître une et une seule valeur de B,
+on dit que *B dépend fonctionnellement de A*.
+
+[cols="1,1,2", options="header"]
+|===
+|Concept
+|Représentation
+|Exemple
+
+|Dépendance Fonctionnelle
+| `A --- > B`
+
+A est la *source* et B la *destination* (ou but)
+
+|`idClient --- > nomClient`
+
+La connaissance de l'id d'un client me permet de connaître son nom.
+|===
+
+====
+
+
+=== Propriétés des DF : Axiomes d'Armstrong
+
+Les axiomes d'Armstrong (du nom de **_William Ward Armstrong_**, informaticien et mathématicien Canadien qui a défini les axiomes du système relationnel en 1974)
+[cols="1,2,2", options="header"]
+|===
+|Propriété
+|Définition
+|Remarque
+
+|*Réflexivité*
+|A  →  A  (A propriété quelconque)
+|Tautologie
+
+|*Augmentation*
+|si A  → B alors  A,C  → B &nbsp;  ∀C
+|La source peut être augmentée sans nuire à la DF initiale. Une *erreur d'analyse* courante.
+
+|*Transitivité*
+|si A → B et B → C alors A → C
+|Principe de base du marchandage de données personnelles !
+|===
+
+Dont on peut déduire les propriétés suivantes :
+
+[cols="1,2,2", options="header"]
+|===
+|Propriété
+|Définition
+|Exemple
+
+|*Pseudo-transitivité*
+|si A  →  B et B,C  → D alors  A,C → D
+|Les voleurs de données s'y intéressent fortement...
+
+|*Union*
+|si A  →  B et A → C alors A → B,C
+|Permet d'appliquer l'*encapsulation*
+
+
+|*Décomposition*
+|si A → B,C alors A → B et A → C
+|Pour revenir à l'évidence
+
+|===
+
+
+=== Qualités remarquables des DF
+
+En phase d'analyse, on _ne retient que_ les DF ayant les qualités *_élémentaire_* et *_directe_*.
+
+Intéressons-nous à ces qualités.
+
+
+==== Qualité élémentaire
+
+=====
+
+*Def* :	Une DF est *élémentaire* si sa source est _minimum_
+
+La DF : `A → B` est élémentaire s'il n'existe pas une (ou un ensemble de) propriété(s) C,
+tel que C est sous-ensemble de A, C différent de A, et `C → B`.
+
+Contre-Exemple : Il aurait été faux de conserver la DF :
+
+`(id_commande, id_fournisseur)  --- > date_commande`
+
+si la DF  `id_commande  --- > date_commande` suffit.
+=====
+
+==== Qualité directe
+
+=====
+
+*Def* :	Une DF est *directe* si elle n'est pas transitive.
+
+Contre exemple (DF transitive)
+
+```
+    transitivité
+  A  ---------->  C  si une conséquence des DF :  A → B  et  B → C
+```
+
+Exemple : `idCmd --- > idFournisseur, nomFournisseur`,
+qui se lit : "_la connaisance du numéro de commande me permet de connaître l'identifiant du fourniseur et son nom_" (ce qui est logique, vous en conviendrez)
+
+Seulement voilà, la relation `idCmd --- > nomFournisseur` est une DF obtenue par transitivité s’il existe la DF (et c’est fort probable) : `idFournisseur --- > nomFournisseur`
+
+Dans ce cas il faut transformer la DF transitive en deux DF directes :
+
+`idCmd → idFournisseur` et `idFournisseur → nomFournisseur`
+
+=====
+
+== Dépendance Multivaluée
+
+Il a des cas où la connaissance d'une propriété nous permet de connaître *plus d'une* autres propriétés du sytème.
+
+Les axiomes d'Armstrong sont considérées agir sur les DM.
+
+====
+
+*Def* : Lorsqu'une valeur de A permet de connaître plus d'une valeur de B,
+on dit que B est en *dépendance multivaluée* avec A, et on le note :
+A ->-> B
+
+
+[cols="1,1,2", options="header"]
+|===
+|Concept
+|Représentation
+|Exemple
+
+|Dépendance Multivaluée
+| A ->-> B
+
+  ou
+
+ A -\->>B
+
+|idClient ->-> idCommande
+
+La connaissance de l'id d'un client me permet de connaître l'ensemble de ses identifiants de commande.
+|===
+
+
+====
+
+=== Qualités de DM
+
+En phase d'analyse, nous ne retiendrons que les DM élémentaire, directe et réciproque.
+
+==== Qualité élémentaire
+
+
+
+======
+
+*Def* : Une DM est *élémentaire* si la source est minimum.
+
+======
+
+==== Qualité directe
+
+======
+
+*Def* : Une DM est *directe* si aucune décomposition ne peut être appliquée (absence de transitivité)
+
+======
+
+
+==== Réciproques
+======
+
+*Def* : Lorsque A -\->> B [.underline]#et# B -\->> A, on dit que A et B sont en *DM Réciproques* (DMR).
+
+[cols="1,1,2", options="header"]
+|===
+|Concept
+|Représentation
+|Exemple
+
+|Dépendances Multivaluées Réciproques (DMR)
+| A-\->-\->o\<--\<--B
+
+ou
+
+A-\->>o<\<--B
+
+|idPays ->->o<-<- idLangueParlee
+
+* La connaissance de l'id d'un pays me permet de connaître l'ensemble des langues parlées dans ce pays
+
+* La connaissance de l'id d'une langue parlée me permet de connaître l'ensemble des pays où la langue est parlée
+|===
+
+======
+
+
+== Conduite de l'analyse
+
+Ce chapitre introduit 2 règles à suivre lorsqu'on analyse des données en vue de modéliser le domaine métier.
+
+Les deux règles sont des outils précieux en vue d'établir une base de données *cohérentes* et *sans doublons*.
+
+Rappel : Ne sont considérées ici que les dépendances *directes* et *élémentaires*.
+
+
+====
+*Règle 1*
+
+Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B \->> A,
+seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
+
+====
+
+====
+*Règle 2*
+
+Toute source multi-attributs d'une DF (DF à partie gauche composée) se doit d'être une
+DMR élémentaire et directe (prévisage d'une relation type many-to-many).
+
+En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :
+
+  (A, B) -> (A, B)   <=>   A -->>o<<-- B   <=>   (A,B)
+
+====
+
+== Représentation graphiques des dépendances
+
+Les dépendances, dans leur ensemble, peuvent être représentées par
+
+* un *Graphe de Dépendances (directes et élémentaires)* - orienté attribut/donnée
+
+* un *Diagramme de classes UML (orienté entité)*, où ne figurent que les relations directes et
+élémentaires. Dans ce contexte une classe est une Entité et les transitivités déduites sont
+rarement signalées – UML les considère comme des attributs dérivés – avec une notation
+spéciale
+
+Soit les DF suivantes :
+....
+* numClient -> Pays  (pays de naissance)
+* numClient -> Continent  (continent préféré)
+* idPays -> libPays
+* idPays -> idContinent
+* idContinent -> libContinent
+....
+
+=== 1: GD (graphe de dépendances)
+
+Les dépendances sont réparties sur le plan, de façon à favoriser le plus possible leur compréhension.
+
+Exemple de Graphe de Dépendances (focalisation sur les attributs)
+
+image:gd-1.png[title="exemple graphe de dependances labelisés"]
+
+=== 2: Diagramme de classes UML
+
+Exemple de Diagramme de Classes des Entités du Domaine (focalisation sur les classes - réalisé avec http://dia-installer.de/[dia])
+
+image:GDF-UML.png[title="exemple diag. de classes du domaine"]
+
+NOTE: le stéréotype \<<ID>> n'est pas obligatoire, ni \<<entity>> ,
+si l'auteur du diagramme spécifie clairement qu'il s'agit de modèle conceptuel du domaine.
+
+== Règles de passage du GD au Modèle du Domaine UML
+
+
+====
+*R1* : A une source d'un DF (à gauche de la flèche) correspond une *entité* qui admet un identifiant.
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+|&nbsp;
+
+&nbsp; &nbsp; A-\->B
+
+| image:diag-gd-1.png[title="entite du domaine"]
+
+|===
+
+====
+
+====
+*R2* : Une dépendance multivaluée réciproque (DMR) engendre une
+*association many-to-many*.
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+|&nbsp;
+
+&nbsp; &nbsp; A-\->>o<\<--B
+
+| image:diag-gd-2.png[title="association many to many"]
+
+|===
+
+====
+
+====
+*R3* : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
+*classe association* portant l'attribut.
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+| image:gd-3.png[title="classe association"]&nbsp;
+| image:diag-gd-3.png[title="classe association"]
+
+|===
+
+====
+
+
+====
+*R4* : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
+est considéré comme une source (voir R1)
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+|&nbsp;
+
+image:gd-4.png[title="classe association"]&nbsp;
+| image:diag-gd-4.png[title="2 associations"]
+
+|===
+
+====
+
+=== Exemple d'application
+
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+|&nbsp;
+
+image:gd-exemple.png[title="gd exemple"]&nbsp;
+| image:diag-gd-exemple.png[title="2 associations"]
+
+|===
+
+=== Exercices
+
+==== Ex 1
+
+D'après les DF suivantes, construisez un GD et MCD
+----
+	(a, b) -> c
+	c -> d
+	e -> c
+----
+==== Ex 2
+
+D'après les DF suivantes, construisez un GD et MCD
+----
+	(a, b) -> c
+	(c, e) -> d
+	d -> f
+	d -> g
+	a -> h
+----
+
+==== Ex 3
+
+Une communauté de commune disposant de nombreux matériels agricole et travaux publics, souhaite
+pouvoir louer ce matériel à ses administrés. Après une rencontre avec le responsable technique,
+votre collègue vous soumet son analyse sur la base d'un ensemble d'attributs en dépendances :
+
+----
+NumEmprunteur -> NomEmprunteur
+NumEmprunteur -> AdrEmprunteur
+NumEmprunteur -> TelEmprunteur
+(NumEnprunteur, idMateriel) -> DateEmprunt
+(NumEnprunteur, idMateriel) -> DateRetour
+idMateriel -> idCategorie
+idMateriel -> idMarque
+idMateriel -> idCategoriePrix
+idCategorie -> LibCategorie
+idMateriel -> AnneeSortie
+idMateriel -> CategoriePrix
+idMateriel -> idEtat
+idMarque -> NomMarque
+idCategoriePrix -> PrixLocation
+idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION', 'HS'}
+----
+
+Établir le GD ainsi qu'un MCD correspondant.
+
+== Formes Normales
+
+== Passage Modèle de domaine vers SR
+
+== Exercices

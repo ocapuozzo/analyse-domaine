@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="description" content="aide méthodologique à l'analyse du domaine">
+<meta name="author" content="O. Capuozzo">
+<title>Analyse, une introduction</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Analyse, une introduction</h1>
+<div class="details">
+<span id="author" class="author">O. Capuozzo</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2020-03-20</span>
+<br><span id="revremark">Version asciidoc</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table des matieres</div>
+<ul class="sectlevel1">
+<li><a href="#présentation">Présentation</a></li>
+<li><a href="#notions-de-df-et-dmr">Notions de DF et DMR</a>
+<ul class="sectlevel2">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#dépendance-fonctionnelle">Dépendance Fonctionnelle</a>
+<ul class="sectlevel3">
+<li><a href="#propriétés-des-df-axiomes-d-armstrong">Propriétés des DF : Axiomes d&#8217;Armstrong</a></li>
+<li><a href="#qualités-remarquables-des-df">Qualités remarquables des DF</a></li>
+</ul>
+</li>
+<li><a href="#dépendance-multivaluée">Dépendance Multivaluée</a>
+<ul class="sectlevel3">
+<li><a href="#qualités-de-dm">Qualités de DM</a></li>
+</ul>
+</li>
+<li><a href="#conduite-de-l-analyse">Conduite de l&#8217;analyse</a></li>
+<li><a href="#représentation-graphiques-des-dépendances">Représentation graphiques des dépendances</a>
+<ul class="sectlevel3">
+<li><a href="#1-gd-graphe-de-dépendances">1: GD (graphe de dépendances)</a></li>
+<li><a href="#2-diagramme-de-classes-uml">2: Diagramme de classes UML</a></li>
+</ul>
+</li>
+<li><a href="#règles-de-passage-du-gd-au-modèle-du-domaine-uml">Règles de passage du GD au Modèle du Domaine UML</a>
+<ul class="sectlevel3">
+<li><a href="#exemple-d-application">Exemple d&#8217;application</a></li>
+<li><a href="#exercices">Exercices</a></li>
+</ul>
+</li>
+<li><a href="#formes-normales">Formes Normales</a></li>
+<li><a href="#passage-modèle-de-domaine-vers-sr">Passage Modèle de domaine vers SR</a></li>
+<li><a href="#exercices-2">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="présentation"><a class="anchor" href="#présentation"></a>Présentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="images/cogitas.png" alt="cogitas" width="200" title="Vue.js"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="notions-de-df-et-dmr"><a class="anchor" href="#notions-de-df-et-dmr"></a>Notions de DF et DMR</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h3>
+<div class="paragraph">
+<p>En phase d&#8217;analyse, la collecte des données et leurs relations est au centre des préoccupations.</p>
+</div>
+<div class="paragraph">
+<p>Ce support vise à présenter une aide méthodologique en ce sens, en vue de constituer un modèle de domaine.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/analyse-artefacts.png" alt="analyse artefacts" title="artefacts et analyse"></span></p>
+</div>
+<div class="paragraph">
+<p>Après avoir indentifier des concepts métier clés, ces derniers seront <strong>regroupés</strong> (en référence au concept d'<em>encapsulation</em> et de <em>classe</em>) et,
+le plus souvent, <strong>reliés</strong> entre eux (<em>association</em>).</p>
+</div>
+<div class="paragraph">
+<p>Notion de <strong>D</strong>épendance <strong>F</strong>onctionnelle (<strong>DF</strong>) et <strong>D</strong>épendance <strong>M</strong>ultivaluée (<strong>DM</strong>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dépendance-fonctionnelle"><a class="anchor" href="#dépendance-fonctionnelle"></a>Dépendance Fonctionnelle</h3>
+<div class="paragraph">
+<p>soit A et B, deux données (concept métier) du système.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> : Lorsqu&#8217;une valeur de A (une donnée) permet, au plus, de connaître une et une seule valeur de B,
+on dit que <strong>B dépend fonctionnellement de A</strong>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Représentation</th>
+<th class="tableblock halign-left valign-top">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dépendance Fonctionnelle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>A --- &gt; B</code></p>
+<p class="tableblock">A est la <strong>source</strong> et B la <strong>destination</strong> (ou but)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>idClient --- &gt; nomClient</code></p>
+<p class="tableblock">La connaissance de l&#8217;id d&#8217;un client me permet de connaître son nom.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="propriétés-des-df-axiomes-d-armstrong"><a class="anchor" href="#propriétés-des-df-axiomes-d-armstrong"></a>Propriétés des DF : Axiomes d&#8217;Armstrong</h4>
+<div class="paragraph">
+<p>Les axiomes d&#8217;Armstrong (du nom de <strong><em>William Ward Armstrong</em></strong>, informaticien et mathématicien Canadien qui a défini les axiomes du système relationnel en 1974)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Propriété</th>
+<th class="tableblock halign-left valign-top">Définition</th>
+<th class="tableblock halign-left valign-top">Remarque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Réflexivité</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A  →  A  (A propriété quelconque)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tautologie</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Augmentation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A  → B alors  A,C  → B &nbsp;  ∀C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La source peut être augmentée sans nuire à la DF initiale. Une <strong>erreur d&#8217;analyse</strong> courante.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Transitivité</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A → B et B → C alors A → C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Principe de base du marchandage de données personnelles !</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Dont on peut déduire les propriétés suivantes :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Propriété</th>
+<th class="tableblock halign-left valign-top">Définition</th>
+<th class="tableblock halign-left valign-top">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pseudo-transitivité</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A  →  B et B,C  → D alors  A,C → D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Les voleurs de données s&#8217;y intéressent fortement&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Union</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A  →  B et A → C alors A → B,C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;appliquer l'<strong>encapsulation</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Décomposition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A → B,C alors A → B et A → C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pour revenir à l&#8217;évidence</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="qualités-remarquables-des-df"><a class="anchor" href="#qualités-remarquables-des-df"></a>Qualités remarquables des DF</h4>
+<div class="paragraph">
+<p>En phase d&#8217;analyse, on <em>ne retient que</em> les DF ayant les qualités <strong><em>élémentaire</em></strong> et <strong><em>directe</em></strong>.</p>
+</div>
+<div class="paragraph">
+<p>Intéressons-nous à ces qualités.</p>
+</div>
+<div class="sect4">
+<h5 id="qualité-élémentaire"><a class="anchor" href="#qualité-élémentaire"></a>Qualité élémentaire</h5>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> :	Une DF est <strong>élémentaire</strong> si sa source est <em>minimum</em></p>
+</div>
+<div class="paragraph">
+<p>La DF : <code>A → B</code> est élémentaire s&#8217;il n&#8217;existe pas une (ou un ensemble de) propriété(s) C,
+tel que C est sous-ensemble de A, C différent de A, et <code>C → B</code>.</p>
+</div>
+<div class="paragraph">
+<p>Contre-Exemple : Il aurait été faux de conserver la DF :</p>
+</div>
+<div class="paragraph">
+<p><code>(id_commande, id_fournisseur)  --- &gt; date_commande</code></p>
+</div>
+<div class="paragraph">
+<p>si la DF  <code>id_commande  --- &gt; date_commande</code> suffit.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="qualité-directe"><a class="anchor" href="#qualité-directe"></a>Qualité directe</h5>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> :	Une DF est <strong>directe</strong> si elle n&#8217;est pas transitive.</p>
+</div>
+<div class="paragraph">
+<p>Contre exemple (DF transitive)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>    transitivité
+  A  ----------&gt;  C  si une conséquence des DF :  A → B  et  B → C</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Exemple : <code>idCmd --- &gt; idFournisseur, nomFournisseur</code>,
+qui se lit : "<em>la connaisance du numéro de commande me permet de connaître l&#8217;identifiant du fourniseur et son nom</em>" (ce qui est logique, vous en conviendrez)</p>
+</div>
+<div class="paragraph">
+<p>Seulement voilà, la relation <code>idCmd --- &gt; nomFournisseur</code> est une DF obtenue par transitivité s’il existe la DF (et c’est fort probable) : <code>idFournisseur --- &gt; nomFournisseur</code></p>
+</div>
+<div class="paragraph">
+<p>Dans ce cas il faut transformer la DF transitive en deux DF directes :</p>
+</div>
+<div class="paragraph">
+<p><code>idCmd → idFournisseur</code> et <code>idFournisseur → nomFournisseur</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dépendance-multivaluée"><a class="anchor" href="#dépendance-multivaluée"></a>Dépendance Multivaluée</h3>
+<div class="paragraph">
+<p>Il a des cas où la connaissance d&#8217;une propriété nous permet de connaître <strong>plus d&#8217;une</strong> autres propriétés du sytème.</p>
+</div>
+<div class="paragraph">
+<p>Les axiomes d&#8217;Armstrong sont considérées agir sur les DM.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> : Lorsqu&#8217;une valeur de A permet de connaître plus d&#8217;une valeur de B,
+on dit que B est en <strong>dépendance multivaluée</strong> avec A, et on le note :
+A &#8594;&#8594; B</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Représentation</th>
+<th class="tableblock halign-left valign-top">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dépendance Multivaluée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A &#8594;&#8594; B</p>
+<p class="tableblock">  ou</p>
+<p class="tableblock"> A --&gt;&gt;B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">idClient &#8594;&#8594; idCommande</p>
+<p class="tableblock">La connaissance de l&#8217;id d&#8217;un client me permet de connaître l&#8217;ensemble de ses identifiants de commande.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="qualités-de-dm"><a class="anchor" href="#qualités-de-dm"></a>Qualités de DM</h4>
+<div class="paragraph">
+<p>En phase d&#8217;analyse, nous ne retiendrons que les DM élémentaire, directe et réciproque.</p>
+</div>
+<div class="sect4">
+<h5 id="qualité-élémentaire-2"><a class="anchor" href="#qualité-élémentaire-2"></a>Qualité élémentaire</h5>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> : Une DM est <strong>élémentaire</strong> si la source est minimum.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="qualité-directe-2"><a class="anchor" href="#qualité-directe-2"></a>Qualité directe</h5>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> : Une DM est <strong>directe</strong> si aucune décomposition ne peut être appliquée (absence de transitivité)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="réciproques"><a class="anchor" href="#réciproques"></a>Réciproques</h5>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Def</strong> : Lorsque A --&gt;&gt; B <span class="underline">et</span> B --&gt;&gt; A, on dit que A et B sont en <strong>DM Réciproques</strong> (DMR).</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Représentation</th>
+<th class="tableblock halign-left valign-top">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dépendances Multivaluées Réciproques (DMR)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A--&gt;--&gt;o&lt;--&lt;--B</p>
+<p class="tableblock">ou</p>
+<p class="tableblock">A--&gt;&gt;o&lt;&lt;--B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">idPays &#8594;&#8594;o&#8592;&#8592; idLangueParlee</p>
+<p class="tableblock">* La connaissance de l&#8217;id d&#8217;un pays me permet de connaître l&#8217;ensemble des langues parlées dans ce pays</p>
+<p class="tableblock">* La connaissance de l&#8217;id d&#8217;une langue parlée me permet de connaître l&#8217;ensemble des pays où la langue est parlée</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conduite-de-l-analyse"><a class="anchor" href="#conduite-de-l-analyse"></a>Conduite de l&#8217;analyse</h3>
+<div class="paragraph">
+<p>Ce chapitre introduit 2 règles à suivre lorsqu&#8217;on analyse des données en vue de modéliser le domaine métier.</p>
+</div>
+<div class="paragraph">
+<p>Les deux règles sont des outils précieux en vue d&#8217;établir une base de données <strong>cohérentes</strong> et <strong>sans doublons</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Rappel : Ne sont considérées ici que les dépendances <strong>directes</strong> et <strong>élémentaires</strong>.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Règle 1</strong></p>
+</div>
+<div class="paragraph">
+<p>Lorsque, dans un contexte donné, A et B sont en relation de type A &#8594; B et B -&gt;&gt; A,
+seule la DF  (A &#8594; B) est retenue. (prévisage d&#8217;une relation type many-to-one).</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Règle 2</strong></p>
+</div>
+<div class="paragraph">
+<p>Toute source multi-attributs d&#8217;une DF (DF à partie gauche composée) se doit d&#8217;être une
+DMR élémentaire et directe (prévisage d&#8217;une relation type many-to-many).</p>
+</div>
+<div class="paragraph">
+<p>En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>(A, B) -&gt; (A, B)   &lt;=&gt;   A --&gt;&gt;o&lt;&lt;-- B   &lt;=&gt;   (A,B)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="représentation-graphiques-des-dépendances"><a class="anchor" href="#représentation-graphiques-des-dépendances"></a>Représentation graphiques des dépendances</h3>
+<div class="paragraph">
+<p>Les dépendances, dans leur ensemble, peuvent être représentées par</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un <strong>Graphe de Dépendances (directes et élémentaires)</strong> - orienté attribut/donnée</p>
+</li>
+<li>
+<p>un <strong>Diagramme de classes UML (orienté entité)</strong>, où ne figurent que les relations directes et
+élémentaires. Dans ce contexte une classe est une Entité et les transitivités déduites sont
+rarement signalées – UML les considère comme des attributs dérivés – avec une notation
+spéciale</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Soit les DF suivantes :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>* numClient -&gt; Pays  (pays de naissance)
+* numClient -&gt; Continent  (continent préféré)
+* idPays -&gt; libPays
+* idPays -&gt; idContinent
+* idContinent -&gt; libContinent</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="1-gd-graphe-de-dépendances"><a class="anchor" href="#1-gd-graphe-de-dépendances"></a>1: GD (graphe de dépendances)</h4>
+<div class="paragraph">
+<p>Les dépendances sont réparties sur le plan, de façon à favoriser le plus possible leur compréhension.</p>
+</div>
+<div class="paragraph">
+<p>Exemple de Graphe de Dépendances (focalisation sur les attributs)</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/gd-1.png" alt="gd 1" title="exemple graphe de dependances labelisés"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="2-diagramme-de-classes-uml"><a class="anchor" href="#2-diagramme-de-classes-uml"></a>2: Diagramme de classes UML</h4>
+<div class="paragraph">
+<p>Exemple de Diagramme de Classes des Entités du Domaine (focalisation sur les classes - réalisé avec <a href="http://dia-installer.de/">dia</a>)</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GDF-UML.png" alt="GDF UML" title="exemple diag. de classes du domaine"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+le stéréotype &lt;&lt;ID&gt;&gt; n&#8217;est pas obligatoire, ni &lt;&lt;entity&gt;&gt; ,
+si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de modèle conceptuel du domaine.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="règles-de-passage-du-gd-au-modèle-du-domaine-uml"><a class="anchor" href="#règles-de-passage-du-gd-au-modèle-du-domaine-uml"></a>Règles de passage du GD au Modèle du Domaine UML</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>R1</strong> : A une source d&#8217;un DF (à gauche de la flèche) correspond une <strong>entité</strong> qui admet un identifiant.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
+<p class="tableblock">&nbsp; &nbsp; A--&gt;B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-1.png" alt="diag gd 1" title="entite du domaine"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>R2</strong> : Une dépendance multivaluée réciproque (DMR) engendre une
+<strong>association many-to-many</strong>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
+<p class="tableblock">&nbsp; &nbsp; A--&gt;&gt;o&lt;&lt;--B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-2.png" alt="diag gd 2" title="association many to many"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>R3</strong> : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
+<strong>classe association</strong> portant l&#8217;attribut.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/gd-3.png" alt="gd 3" title="classe association"></span>&nbsp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-3.png" alt="diag gd 3" title="classe association"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>R4</strong> : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
+est considéré comme une source (voir R1)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
+<p class="tableblock"><span class="image"><img src="images/gd-4.png" alt="gd 4" title="classe association"></span>&nbsp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-4.png" alt="diag gd 4" title="2 associations"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exemple-d-application"><a class="anchor" href="#exemple-d-application"></a>Exemple d&#8217;application</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
+<p class="tableblock"><span class="image"><img src="images/gd-exemple.png" alt="gd exemple" title="gd exemple"></span>&nbsp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-exemple.png" alt="diag gd exemple" title="2 associations"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="exercices"><a class="anchor" href="#exercices"></a>Exercices</h4>
+<div class="sect4">
+<h5 id="ex-1"><a class="anchor" href="#ex-1"></a>Ex 1</h5>
+<div class="paragraph">
+<p>D&#8217;après les DF suivantes, construisez un GD et MCD</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	(a, b) -&gt; c
+	c -&gt; d
+	e -&gt; c</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ex-2"><a class="anchor" href="#ex-2"></a>Ex 2</h5>
+<div class="paragraph">
+<p>D&#8217;après les DF suivantes, construisez un GD et MCD</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>	(a, b) -&gt; c
+	(c, e) -&gt; d
+	d -&gt; f
+	d -&gt; g
+	a -&gt; h</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ex-3"><a class="anchor" href="#ex-3"></a>Ex 3</h5>
+<div class="paragraph">
+<p>Une communauté de commune disposant de nombreux matériels agricole et travaux publics, souhaite
+pouvoir louer ce matériel à ses administrés. Après une rencontre avec le responsable technique,
+votre collègue vous soumet son analyse sur la base d&#8217;un ensemble d&#8217;attributs en dépendances :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NumEmprunteur -&gt; NomEmprunteur
+NumEmprunteur -&gt; AdrEmprunteur
+NumEmprunteur -&gt; TelEmprunteur
+(NumEnprunteur, idMateriel) -&gt; DateEmprunt
+(NumEnprunteur, idMateriel) -&gt; DateRetour
+idMateriel -&gt; idCategorie
+idMateriel -&gt; idMarque
+idMateriel -&gt; idCategoriePrix
+idCategorie -&gt; LibCategorie
+idMateriel -&gt; AnneeSortie
+idMateriel -&gt; CategoriePrix
+idMateriel -&gt; idEtat
+idMarque -&gt; NomMarque
+idCategoriePrix -&gt; PrixLocation
+idEtat -&gt; LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION', 'HS'}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Établir le GD ainsi qu&#8217;un MCD correspondant.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="formes-normales"><a class="anchor" href="#formes-normales"></a>Formes Normales</h3>
+
+</div>
+<div class="sect2">
+<h3 id="passage-modèle-de-domaine-vers-sr"><a class="anchor" href="#passage-modèle-de-domaine-vers-sr"></a>Passage Modèle de domaine vers SR</h3>
+
+</div>
+<div class="sect2">
+<h3 id="exercices-2"><a class="anchor" href="#exercices-2"></a>Exercices</h3>
+
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2020-03-22 08:43:59 CET
+</div>
+</div>
+</body>
+</html>
