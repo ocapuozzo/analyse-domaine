@@ -106,7 +106,10 @@
 
             </plugin>
 
-            <!-- rename/create index.html for ghpages/docs
+            <!--
+            no more, if main page adoc is named index.adoc!!
+
+            rename/create index.html for ghpages/docs
              <!> index.html will be image html of file in src/docs/asciidoc/
                  which name are same as directory root project
              -->
