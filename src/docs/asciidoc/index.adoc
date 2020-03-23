@@ -6,7 +6,7 @@ v1.0, 2020-03-20: Version asciidoc
 :listing-caption: Listing
 :toc-title: Table des matieres
 :toc:
-:toclevels: 3
+:toclevels: 4
 :source-highlighter: coderay
 ifdef::backend-pdf[]
 :source-highlighter: rouge

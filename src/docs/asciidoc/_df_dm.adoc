@@ -52,6 +52,7 @@ leur *valeur est unique* au sein du système.
 NOTE: Par exemple, `idClient -> nomClient`,  `idClient` est la *clé* qui permet l'accès à l'information `nomClient`. Pour la cohérence du sytème,
 cette clé doit être unique (absence de doublons)
 
+TIP: La source d'une dépendance engendrera, dans la majorité des cas, une *entité* dénotant un concept métier. (voir plus bas : link:#règles-de-passage-du-gd-au-modèle-du-domaine-uml[règles-de-passage-du-gd-au-modèle-du-domaine-uml])
 
 === Propriétés des DF : Axiomes d'Armstrong
 
@@ -184,9 +185,8 @@ La connaissance de l'id d'un client me permet de connaître l'ensemble de ses id
 
 En phase d'analyse, nous ne retiendrons que les DM élémentaire, directe et réciproque.
 
+
 ==== Qualité élémentaire
-
-
 
 ======
 
@@ -229,6 +229,13 @@ A-\->>o<\<--B
 |===
 
 ======
+
+==== Caractère d'unicité
+
+Tout comme les DF, la valeur de source d'une DMR doit être *unique* dans le sytème.
+
+NOTE: Les systèmes de gestion de base de données relationnelles offrent plusieurs moyens de
+déclarer une contrainte d'unicité (`PRIMARY KEY`, `CANDIDATE KEY`, `UNIQUE`, ...)
 
 
 == Conduite de l'analyse
@@ -438,7 +445,8 @@ idCategoriePrix -> PrixLocation
 idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION', 'HS'}
 ----
 
-Établir le GD ainsi qu'un MCD correspondant.
+* Établir le GD ainsi qu'un MCD correspondant.
+* L'analyse de votre collègue a un défaut. Tachez de le détecter et de corriger son analyse.
 
 == Formes Normales
 
