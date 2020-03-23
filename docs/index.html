@@ -31,6 +31,7 @@
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#dépendance-fonctionnelle">Dépendance Fonctionnelle</a>
 <ul class="sectlevel3">
+<li><a href="#caractère-d-unicité">Caractère d&#8217;unicité</a></li>
 <li><a href="#propriétés-des-df-axiomes-d-armstrong">Propriétés des DF : Axiomes d&#8217;Armstrong</a></li>
 <li><a href="#qualités-remarquables-des-df">Qualités remarquables des DF</a></li>
 </ul>
@@ -125,6 +126,26 @@ on dit que <strong>B dépend fonctionnellement de A</strong>.</p>
 <p class="tableblock">La connaissance de l&#8217;id d&#8217;un client me permet de connaître son nom.</p></td>
 </tr>
 </tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="caractère-d-unicité"><a class="anchor" href="#caractère-d-unicité"></a>Caractère d&#8217;unicité</h4>
+<div class="paragraph">
+<p>Les <strong>sources</strong> des dépendances sont, par nature, des <strong>identifiants</strong>,
+leur <strong>valeur est unique</strong> au sein du système.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Par exemple, <code>idClient &#8594; nomClient</code>,  <code>idClient</code> est la <strong>clé</strong> qui permet l&#8217;accès à l&#8217;information <code>nomClient</code>. Pour la cohérence du sytème,
+cette clé doit être unique (absence de doublons)
+</td>
+</tr>
 </table>
 </div>
 </div>

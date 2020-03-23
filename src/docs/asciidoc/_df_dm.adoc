@@ -15,6 +15,7 @@ en relation de dépendances (_association_, _heritage_).
 
 Notion de **D**épendance **F**onctionnelle (*DF*) et **D**épendance **M**ultivaluée (*DM*)
 
+
 == Dépendance Fonctionnelle
 
 soit A et B, deux données (concept métier) du système.
@@ -41,6 +42,15 @@ La connaissance de l'id d'un client me permet de connaître son nom.
 |===
 
 ====
+
+
+=== Caractère d'unicité
+
+Les *sources* des dépendances sont, par nature, des *identifiants*,
+leur *valeur est unique* au sein du système.
+
+NOTE: Par exemple, `idClient -> nomClient`,  `idClient` est la *clé* qui permet l'accès à l'information `nomClient`. Pour la cohérence du sytème,
+cette clé doit être unique (absence de doublons)
 
 
 === Propriétés des DF : Axiomes d'Armstrong
