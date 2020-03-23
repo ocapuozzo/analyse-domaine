@@ -475,6 +475,38 @@ idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION',
 * L'analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.
 * Établir le GD ainsi qu'un MCD correspondant.
 
+
+==== Ex 4
+
+
+Le service informatique de l'organisation X, organisée en départements, souhaite modéliser le fait
+qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os),
+à une date donnée, pour un département de l'entreprise (id, nom, budget).
+
+* Établir le GD ainsi qu'un MCD correspondant.
+
+==== Ex 5
+
+Dialogue dans une quincaillerie de détail :
+
+Analyste : comment appelez-vous cette pièce ?::
+Vendeur : c'est une vis à bois 25/4 dont la référence est VB25.4AI
+
+A : quelles sont les autres informations que vous enregistrez ?::
+V :  son prix de vente H.T. par dizaine, son métal, ici de l'acier inox, son stock présent en centaines,
+
+A : avez-vous un seul fournisseur ?::
+V : non, par exemple cette vis nous est proposée par Grosdétail à 0,12 € et 0,35 € chez BigSA.
+
+A: comment sont classées vos marchandises ?::
+V : nous avons plusieurs familles de quincaillerie, ainsi la VB25.4AI est de la famille des vis à bois, par contre FX12OP est une petite fixation classée dans les fixations de plafond.
+A : pouvez-vous me montrer un exemplaire de commande ?::
+V : tenez, voici la dernière.
+A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez Duclou, 125 rue Emile Sayfulin 93000 Ouzbekistan sur seine pour  45 boites (de 100 pièces) de CL15.2TR (visse à placo) et 15 boites de FX12OP.::
+&nbsp;
+
+* Établir le GD ainsi qu'un MCD correspondant.
+
 == Formes Normales
 
 == Passage Modèle de domaine vers SR
