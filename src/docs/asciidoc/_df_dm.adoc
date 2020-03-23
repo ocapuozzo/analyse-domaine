@@ -111,9 +111,9 @@ Intéressons-nous à ces qualités.
 
 =====
 
-*Def* :	Une DF est *élémentaire* si sa source est _minimum_
+*Def* :	Une DF est *élémentaire* si sa source est minimale (non en augmentation)
 
-La DF : `A → B` est élémentaire s'il n'existe pas une (ou un ensemble de) propriété(s) C,
+La DF : `A → B` est élémentaire s'il n'existe pas un ensemble de propriétés C,
 tel que C est sous-ensemble de A, C différent de A, et `C → B`.
 
 Contre-Exemple : Il aurait été faux de conserver la DF :
@@ -270,12 +270,11 @@ NOTE: pour les source à n attributs, il faut vérifier les qualités directes e
   (A, B, C)  <=>   A -->>o<<-- B , A -->>o<<-- C, B -->>o<<-- C
   et vérifier l'absence d'une DF cachée comme : (B, C) -> A par exemple (en application du principe 1)
 
-
 ====
 
 == Représentation graphiques des dépendances
 
-Les dépendances, dans leur ensemble, peuvent être représentées par
+Les dépendances, dans leur ensemble, peuvent graphiquement être représentées par
 
 * un *Graphe de Dépendances (directes et élémentaires)* - orienté attribut/donnée
 
@@ -284,7 +283,7 @@ Les dépendances, dans leur ensemble, peuvent être représentées par
 rarement signalées – UML les considère comme des attributs dérivés – avec une notation
 spéciale
 
-Soit les DF suivantes :
+Soit les DF suivantes (contexte : agence de voyage) :
 ....
 * numClient -> Pays  (pays de naissance)
 * numClient -> Continent  (continent préféré)
@@ -293,7 +292,7 @@ Soit les DF suivantes :
 * idContinent -> libContinent
 ....
 
-=== 1: GD (graphe de dépendances)
+=== 1/ GD (graphe de dépendances)
 
 Les dépendances sont réparties sur le plan, de façon à favoriser le plus possible leur compréhension.
 
@@ -301,7 +300,7 @@ Exemple de Graphe de Dépendances (focalisation sur les attributs)
 
 image:gd-1.png[title="exemple graphe de dependances labelisés"]
 
-=== 2: Diagramme de classes UML
+=== 2/ Diagramme de classes UML
 
 Exemple de Diagramme de Classes des Entités du Domaine (focalisation sur les classes - réalisé avec http://dia-installer.de/[dia])
 
@@ -309,6 +308,22 @@ image:GDF-UML.png[title="exemple diag. de classes du domaine"]
 
 NOTE: le stéréotype \<<ID>> n'est pas obligatoire, ni \<<entity>> ,
 si l'auteur du diagramme spécifie clairement qu'il s'agit de modèle conceptuel du domaine.
+
+
+=== Normalisation GD/MCD
+
+On prendra soin de ne conserver dans le graphe, et diagramme de classes, que les dépendances
+*élémentaires* et *directes*, c-a-d non issues de transitivité. Un tel graphe est en *couverture minimale*.
+
+Remarque: Un graphe dont toutes les dépendances transitives sont représentées est dit en *fermeture transitive*.
+
+Ce mode de représentation (couverture minimale)
+
+    • Evite les redondances (une propriété est notée une seule fois)
+    • Les DF transitives sont facilement déduites (visible d'un premier coup d'œil)
+    • Les rôles joués non triviaux sont textuellement notés
+
+
 
 == Règles de passage du GD au Modèle du Domaine UML
 
@@ -331,8 +346,26 @@ si l'auteur du diagramme spécifie clairement qu'il s'agit de modèle conceptuel
 
 ====
 
+
 ====
-*R2* : Une dépendance multivaluée réciproque (DMR) engendre une
+*R2* : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
+est considéré comme une source (voir R1)
+
+[cols="2,2", options="header"]
+|===
+|GD
+|Modèle du domaine
+
+|&nbsp;
+
+image:gd-4.png[title="classe association"]&nbsp;
+| image:diag-gd-4.png[title="2 associations"]
+
+|===
+====
+
+====
+*R3* : Une dépendance multivaluée réciproque (DMR) engendre une
 *association many-to-many*.
 
 [cols="2,2", options="header"]
@@ -351,7 +384,7 @@ si l'auteur du diagramme spécifie clairement qu'il s'agit de modèle conceptuel
 ====
 
 ====
-*R3* : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
+*R4* : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
 *classe association* portant l'attribut.
 
 [cols="2,2", options="header"]
@@ -360,26 +393,7 @@ si l'auteur du diagramme spécifie clairement qu'il s'agit de modèle conceptuel
 |Modèle du domaine
 
 | image:gd-3.png[title="classe association"]&nbsp;
-| image:diag-gd-3.png[title="classe association"]
-
-|===
-
-====
-
-
-====
-*R4* : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
-est considéré comme une source (voir R1)
-
-[cols="2,2", options="header"]
-|===
-|GD
-|Modèle du domaine
-
-|&nbsp;
-
-image:gd-4.png[title="classe association"]&nbsp;
-| image:diag-gd-4.png[title="2 associations"]
+| image:diag-gd-asso.png[title="classe association"]
 
 |===
 
@@ -396,9 +410,21 @@ image:gd-4.png[title="classe association"]&nbsp;
 |&nbsp;
 
 image:gd-exemple.png[title="gd exemple"]&nbsp;
-| image:diag-gd-exemple.png[title="2 associations"]
+| image:classe-association-1.png[title="2 associations"]
 
 |===
+
+==== Représentation des classes \<<association>>
+
+Dans l'exemple précédent, la classe association `AB` est reliée à une association *many-to-many*.
+
+Il est possible également de représenter une classe association par une entité
+associé à une contrainte d'unicité vers les entités concernées par la relation many-to-many.
+
+image:classe-association-2-entite.png[title="2 association-entite"]
+
+NOTE: Observez bien le changement de multiplicité.
+
 
 === Exercices
 
@@ -446,8 +472,8 @@ idCategoriePrix -> PrixLocation
 idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION', 'HS'}
 ----
 
+* L'analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.
 * Établir le GD ainsi qu'un MCD correspondant.
-* L'analyse de votre collègue a un défaut. Tachez de le détecter et de corriger son analyse.
 
 == Formes Normales
 

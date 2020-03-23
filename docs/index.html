@@ -56,13 +56,18 @@
 <li><a href="#conduite-de-l-analyse">Conduite de l&#8217;analyse</a></li>
 <li><a href="#représentation-graphiques-des-dépendances">Représentation graphiques des dépendances</a>
 <ul class="sectlevel3">
-<li><a href="#1-gd-graphe-de-dépendances">1: GD (graphe de dépendances)</a></li>
-<li><a href="#2-diagramme-de-classes-uml">2: Diagramme de classes UML</a></li>
+<li><a href="#1-gd-graphe-de-dépendances">1/ GD (graphe de dépendances)</a></li>
+<li><a href="#2-diagramme-de-classes-uml">2/ Diagramme de classes UML</a></li>
+<li><a href="#normalisation-gd-mcd">Normalisation GD/MCD</a></li>
 </ul>
 </li>
 <li><a href="#règles-de-passage-du-gd-au-modèle-du-domaine-uml">Règles de passage du GD au Modèle du Domaine UML</a>
 <ul class="sectlevel3">
-<li><a href="#exemple-d-application">Exemple d&#8217;application</a></li>
+<li><a href="#exemple-d-application">Exemple d&#8217;application</a>
+<ul class="sectlevel4">
+<li><a href="#représentation-des-classes-association">Représentation des classes &lt;&lt;association&gt;&gt;</a></li>
+</ul>
+</li>
 <li><a href="#exercices">Exercices</a>
 <ul class="sectlevel4">
 <li><a href="#ex-1">Ex 1</a></li>
@@ -263,10 +268,10 @@ La source d&#8217;une dépendance engendrera, dans la majorité des cas, une <st
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Def</strong> :	Une DF est <strong>élémentaire</strong> si sa source est <em>minimum</em></p>
+<p><strong>Def</strong> :	Une DF est <strong>élémentaire</strong> si sa source est minimale (non en augmentation)</p>
 </div>
 <div class="paragraph">
-<p>La DF : <code>A → B</code> est élémentaire s&#8217;il n&#8217;existe pas une (ou un ensemble de) propriété(s) C,
+<p>La DF : <code>A → B</code> est élémentaire s&#8217;il n&#8217;existe pas un ensemble de propriétés C,
 tel que C est sous-ensemble de A, C différent de A, et <code>C → B</code>.</p>
 </div>
 <div class="paragraph">
@@ -500,7 +505,7 @@ et vérifier l'absence d'une DF cachée comme : (B, C) -&gt; A par exemple (en a
 <div class="sect2">
 <h3 id="représentation-graphiques-des-dépendances"><a class="anchor" href="#représentation-graphiques-des-dépendances"></a>Représentation graphiques des dépendances</h3>
 <div class="paragraph">
-<p>Les dépendances, dans leur ensemble, peuvent être représentées par</p>
+<p>Les dépendances, dans leur ensemble, peuvent graphiquement être représentées par</p>
 </div>
 <div class="ulist">
 <ul>
@@ -516,7 +521,7 @@ spéciale</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Soit les DF suivantes :</p>
+<p>Soit les DF suivantes (contexte : agence de voyage) :</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -528,7 +533,7 @@ spéciale</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="1-gd-graphe-de-dépendances"><a class="anchor" href="#1-gd-graphe-de-dépendances"></a>1: GD (graphe de dépendances)</h4>
+<h4 id="1-gd-graphe-de-dépendances"><a class="anchor" href="#1-gd-graphe-de-dépendances"></a>1/ GD (graphe de dépendances)</h4>
 <div class="paragraph">
 <p>Les dépendances sont réparties sur le plan, de façon à favoriser le plus possible leur compréhension.</p>
 </div>
@@ -540,7 +545,7 @@ spéciale</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="2-diagramme-de-classes-uml"><a class="anchor" href="#2-diagramme-de-classes-uml"></a>2: Diagramme de classes UML</h4>
+<h4 id="2-diagramme-de-classes-uml"><a class="anchor" href="#2-diagramme-de-classes-uml"></a>2/ Diagramme de classes UML</h4>
 <div class="paragraph">
 <p>Exemple de Diagramme de Classes des Entités du Domaine (focalisation sur les classes - réalisé avec <a href="http://dia-installer.de/">dia</a>)</p>
 </div>
@@ -559,6 +564,32 @@ si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de 
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="normalisation-gd-mcd"><a class="anchor" href="#normalisation-gd-mcd"></a>Normalisation GD/MCD</h4>
+<div class="paragraph">
+<p>On prendra soin de ne conserver dans le graphe, et diagramme de classes, que les dépendances
+<strong>élémentaires</strong> et <strong>directes</strong>, c-a-d non issues de transitivité. Un tel graphe est en <strong>couverture minimale</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Remarque: Un graphe dont toutes les dépendances transitives sont représentées est dit en <strong>fermeture transitive</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Ce mode de représentation (couverture minimale)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Evite les redondances (une propriété est notée une seule fois)</p>
+</li>
+<li>
+<p>Les DF transitives sont facilement déduites (visible d&#8217;un premier coup d&#8217;œil)</p>
+</li>
+<li>
+<p>Les rôles joués non triviaux sont textuellement notés</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -593,7 +624,34 @@ si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de 
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>R2</strong> : Une dépendance multivaluée réciproque (DMR) engendre une
+<p><strong>R2</strong> : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
+est considéré comme une source (voir R1)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GD</th>
+<th class="tableblock halign-left valign-top">Modèle du domaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
+<p class="tableblock"><span class="image"><img src="images/gd-4.png" alt="gd 4" title="classe association"></span>&nbsp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-4.png" alt="diag gd 4" title="2 associations"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>R3</strong> : Une dépendance multivaluée réciproque (DMR) engendre une
 <strong>association many-to-many</strong>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -620,7 +678,7 @@ si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de 
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>R3</strong> : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
+<p><strong>R4</strong> : Une dépendance multivaluée réciproque (DMR) ciblant un attribut engendre une
 <strong>classe association</strong> portant l&#8217;attribut.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -637,34 +695,7 @@ si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/gd-3.png" alt="gd 3" title="classe association"></span>&nbsp;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-3.png" alt="diag gd 3" title="classe association"></span></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>R4</strong> : Un but (une destination) commun à plusieurs DF (à droite de plusieurs flèches)
-est considéré comme une source (voir R1)</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">GD</th>
-<th class="tableblock halign-left valign-top">Modèle du domaine</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
-<p class="tableblock"><span class="image"><img src="images/gd-4.png" alt="gd 4" title="classe association"></span>&nbsp;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-4.png" alt="diag gd 4" title="2 associations"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-asso.png" alt="diag gd asso" title="classe association"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -687,10 +718,35 @@ est considéré comme une source (voir R1)</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
 <p class="tableblock"><span class="image"><img src="images/gd-exemple.png" alt="gd exemple" title="gd exemple"></span>&nbsp;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-exemple.png" alt="diag gd exemple" title="2 associations"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/classe-association-1.png" alt="classe association 1" title="2 associations"></span></p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="représentation-des-classes-association"><a class="anchor" href="#représentation-des-classes-association"></a>Représentation des classes &lt;&lt;association&gt;&gt;</h5>
+<div class="paragraph">
+<p>Dans l&#8217;exemple précédent, la classe association <code>AB</code> est reliée à une association <strong>many-to-many</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible également de représenter une classe association par une entité
+associé à une contrainte d&#8217;unicité vers les entités concernées par la relation many-to-many.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/classe-association-2-entite.png" alt="classe association 2 entite" title="2 association-entite"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Observez bien le changement de multiplicité.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="exercices"><a class="anchor" href="#exercices"></a>Exercices</h4>
@@ -752,10 +808,10 @@ idEtat -&gt; LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATIO
 <div class="ulist">
 <ul>
 <li>
-<p>Établir le GD ainsi qu&#8217;un MCD correspondant.</p>
+<p>L&#8217;analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.</p>
 </li>
 <li>
-<p>L&#8217;analyse de votre collègue a un défaut. Tachez de le détecter et de corriger son analyse.</p>
+<p>Établir le GD ainsi qu&#8217;un MCD correspondant.</p>
 </li>
 </ul>
 </div>
