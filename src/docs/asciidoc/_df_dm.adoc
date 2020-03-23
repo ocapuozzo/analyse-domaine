@@ -438,7 +438,8 @@ idMateriel -> idMarque
 idMateriel -> idCategoriePrix
 idCategorie -> LibCategorie
 idMateriel -> AnneeSortie
-idMateriel -> CategoriePrix
+idCategoriePrix -> LibCategoriePrix
+idMateriel -> PrixLocation
 idMateriel -> idEtat
 idMarque -> NomMarque
 idCategoriePrix -> PrixLocation
