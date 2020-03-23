@@ -63,11 +63,8 @@
 </li>
 <li><a href="#règles-de-passage-du-gd-au-modèle-du-domaine-uml">Règles de passage du GD au Modèle du Domaine UML</a>
 <ul class="sectlevel3">
-<li><a href="#exemple-d-application">Exemple d&#8217;application</a>
-<ul class="sectlevel4">
+<li><a href="#exemple-d-application">Exemple d&#8217;application</a></li>
 <li><a href="#représentation-des-classes-association">Représentation des classes &lt;&lt;association&gt;&gt;</a></li>
-</ul>
-</li>
 <li><a href="#exercices">Exercices</a>
 <ul class="sectlevel4">
 <li><a href="#ex-1">Ex 1</a></li>
@@ -724,14 +721,15 @@ est considéré comme une source (voir R1)</p>
 </tr>
 </tbody>
 </table>
-<div class="sect4">
-<h5 id="représentation-des-classes-association"><a class="anchor" href="#représentation-des-classes-association"></a>Représentation des classes &lt;&lt;association&gt;&gt;</h5>
+</div>
+<div class="sect3">
+<h4 id="représentation-des-classes-association"><a class="anchor" href="#représentation-des-classes-association"></a>Représentation des classes &lt;&lt;association&gt;&gt;</h4>
 <div class="paragraph">
 <p>Dans l&#8217;exemple précédent, la classe association <code>AB</code> est reliée à une association <strong>many-to-many</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Il est possible également de représenter une classe association par une entité
-associé à une contrainte d&#8217;unicité vers les entités concernées par la relation many-to-many.</p>
+<p>Il est possible également de représenter une classe association par une entité "ordinaire",
+associée à une contrainte d&#8217;unicité vers les entités concernées par la relation many-to-many.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/classe-association-2-entite-id.png" alt="classe association 2 entite id" title="2 association-entite"></span></p>
@@ -743,11 +741,11 @@ associé à une contrainte d&#8217;unicité vers les entités concernées par la
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Observez bien le changement de multiplicité.
+Observez bien le changement de multiplicité. A noter aussi que c&#8217;est la note, liée à l&#8217;entité <code>AB</code>
+qui spécifie la contrainte associée à cette entité. Elle aurait l&#8217;exprimée sous la forme d&#8217;une contrainte d&#8217;unicité.
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 <div class="sect3">
