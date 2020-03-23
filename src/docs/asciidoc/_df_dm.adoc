@@ -421,7 +421,7 @@ Dans l'exemple précédent, la classe association `AB` est reliée à une associ
 Il est possible également de représenter une classe association par une entité
 associé à une contrainte d'unicité vers les entités concernées par la relation many-to-many.
 
-image:classe-association-2-entite.png[title="2 association-entite"]
+image:classe-association-2-entite-id.png[title="2 association-entite"]
 
 NOTE: Observez bien le changement de multiplicité.
 
