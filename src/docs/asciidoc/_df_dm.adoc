@@ -244,11 +244,13 @@ Ce chapitre introduit 2 principes à suivre lorsqu'on analyse des données en vu
 
 Les deux règles sont des outils précieux en vue d'établir une base de données *cohérentes* et *sans doublons*.
 
-Rappel : Ne sont considérées ici que les dépendances *directes* et *élémentaires*.
+IMPORTANT: Ne sont considérées ici que les dépendances *directes* et *élémentaires*,
+ainsi que les dépendances multivaluées *réciproques*.
 
+Présentation des deux principes.
 
 ====
-*Principe 1*
+*Principe 1 -  DF First*
 
 Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B \->> A,
 seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
@@ -256,10 +258,10 @@ seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
 ====
 
 ====
-*Principe 2*
+*Principe 2 - DF Multi-Attributs == DMR*
 
 Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple (A,B,C) -> D,E ) se doit d'être une
-DMR élémentaire et directe entre ses membres (prévisage d'une relation type many-to-many).
+DMR élémentaire et directe et réciproque entre ses membres (prévisage d'une relation type many-to-many).
 
 En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :
 

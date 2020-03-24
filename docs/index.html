@@ -449,13 +449,26 @@ déclarer une contrainte d&#8217;unicité (<code>PRIMARY KEY</code>, <code>CANDI
 <div class="paragraph">
 <p>Les deux règles sont des outils précieux en vue d&#8217;établir une base de données <strong>cohérentes</strong> et <strong>sans doublons</strong>.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ne sont considérées ici que les dépendances <strong>directes</strong> et <strong>élémentaires</strong>,
+ainsi que les dépendances multivaluées <strong>réciproques</strong>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Rappel : Ne sont considérées ici que les dépendances <strong>directes</strong> et <strong>élémentaires</strong>.</p>
+<p>Présentation des deux principes.</p>
 </div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Principe 1</strong></p>
+<p><strong>Principe 1 -  DF First</strong></p>
 </div>
 <div class="paragraph">
 <p>Lorsque, dans un contexte donné, A et B sont en relation de type A &#8594; B et B -&gt;&gt; A,
@@ -466,11 +479,11 @@ seule la DF  (A &#8594; B) est retenue. (prévisage d&#8217;une relation type ma
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Principe 2</strong></p>
+<p><strong>Principe 2 - DF Multi-Attributs == DMR</strong></p>
 </div>
 <div class="paragraph">
 <p>Toute source multi-attributs d&#8217;une DF (DF à partie gauche composée, par exemple (A,B,C) &#8594; D,E ) se doit d&#8217;être une
-DMR élémentaire et directe entre ses membres (prévisage d&#8217;une relation type many-to-many).</p>
+DMR élémentaire et directe et réciproque entre ses membres (prévisage d&#8217;une relation type many-to-many).</p>
 </div>
 <div class="paragraph">
 <p>En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :</p>
