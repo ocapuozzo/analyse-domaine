@@ -86,16 +86,17 @@ Dont on peut déduire les propriétés suivantes :
 
 |*Pseudo-transitivité*
 |si A  →  B et B,C  → D alors  A,C → D
-|Les voleurs de données s'y intéressent fortement...
+|Les voleurs de données s'y intéressent fortement... (_social engineering attacks_)
 
 |*Union*
 |si A  →  B et A → C alors A → B,C
-|Permet d'appliquer l'*encapsulation*
+|(ne concerne bien évidemment que les cibles d'une même source)
 
+Permet d'appliquer l'*encapsulation*
 
 |*Décomposition*
 |si A → B,C alors A → B et A → C
-|Pour revenir à l'évidence
+|L'inverse de l'union
 
 |===
 
@@ -422,10 +423,14 @@ Dans l'exemple précédent, la classe association `AB` est reliée à une associ
 Il est possible également de représenter une classe association par une entité "ordinaire",
 associée à une contrainte d'unicité vers les entités concernées par la relation many-to-many.
 
+Le changement de statut qui consiste à passer d'une association many-to-many à une entité,
+est une *réification* (en philosopie, action qui consiste à _transposer une abstraction en objet concret_)
+
 image:classe-association-2-entite-id.png[title="2 association-entite"]
 
 NOTE: Observez bien le changement de multiplicité. A noter aussi que c'est la note, liée à l'entité `AB`
-qui spécifie la contrainte associée à cette entité qui aurait pu être exprimée sous la forme d'une simple *contrainte d'unicité*.
+qui spécifie la contrainte associée à cette entité qui aurait pu être également exprimée
+sous la forme d'une simple *contrainte d'unicité*.
 
 
 === Exemple de conduite d'analyse
@@ -480,6 +485,9 @@ idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION',
 ----
 
 * L'analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.
+
+TIP: indices : A/ L'historicité d'un emprunt peut ne pas être garanti.  B/ Présence d'une DF non directe !
+
 * Établir le GD ainsi qu'un MCD correspondant.
 
 
@@ -494,6 +502,9 @@ qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os
 
 ==== Ex 5
 
+On a demandé à un analyste de modéliser le domaine métier d'un quicailler.
+Dans ce but, il décide de rencontrer un vendeur la quincaillerie.
+
 Dialogue dans une quincaillerie de détail :
 
 Analyste : comment appelez-vous cette pièce ?::
@@ -503,7 +514,7 @@ A : quelles sont les autres informations que vous enregistrez ?::
 V :  son prix de vente H.T. par dizaine, son métal, ici de l'acier inox, son stock présent en centaines,
 
 A : avez-vous un seul fournisseur ?::
-V : non, par exemple cette vis nous est proposée par Grosdétail à 0,12 € et 0,35 € chez BigSA.
+V : non, par exemple cette vis nous est proposée par Grosdétail à 0,12 € et 0,18 € chez BigSA.
 
 A: comment sont classées vos marchandises ?::
 V : nous avons plusieurs familles de quincaillerie, ainsi la VB25.4AI est de la famille des vis à bois, par contre FX12OP est une petite fixation classée dans les fixations de plafond.
