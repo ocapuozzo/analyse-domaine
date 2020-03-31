@@ -432,6 +432,11 @@ NOTE: Observez bien le changement de multiplicité. A noter aussi que c'est la n
 qui spécifie la contrainte associée à cette entité qui aurait pu être également exprimée
 sous la forme d'une simple *contrainte d'unicité*.
 
+Vous trouverez un autre exemple dans le chapitre MCD vers SR (entité `Documentation`)
+
+=== Héritage et DF/DM
+
+à venir
 
 === Exemple de conduite d'analyse
 
@@ -527,7 +532,7 @@ A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez
 
 == Formes Normales
 
-== Passage Modèle de domaine vers SR
+== Modèle de domaine vers SR
 Ce chapitre présente les principaux cas d’implémentation d’une analyse métier représenté
 par un diagramme de classes du domaine métier (UML), en particulier les associations *ManyToOne*,
 *OneToOne*, *ManyToMany* et *ManyToMany porteuse de propriétés*.
@@ -555,13 +560,15 @@ image:diagUML-analyse-sr-ManyToMany.png[title="ManyToMany"]
 
 === ManyToMany porteuse (clé multi-attributs)
 
-Une DMR porteuse d'information (impélemntation "scolaire")
+Une DMR porteuse d'information (implémentation d'école)
 
 image:diagUML-analyse-sr-ManyToMany-Porteuse.png[title="ManyToMany"]
 
 === ManyToMany porteuse (réification)
 
-Absence de clé primaire composée : clé technique mono-attribut et clé candidate multi-attributs.
+Exemple de *réification* d'association (généralement pour faire émerger un *concept métier*)
+
+TIP: On remarquera l'absence de clé primaire composée, remplacée par une clé technique mono-attribut et clé candidate multi-attributs.
 
 image:diagUML-analyse-sr-ManyToMany-Porteuse-v2.png[title="ManyToMany"]
 
