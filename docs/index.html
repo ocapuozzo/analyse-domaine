@@ -248,17 +248,18 @@ La source d&#8217;une dépendance engendrera, dans la majorité des cas, une <st
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pseudo-transitivité</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">si A  →  B et B,C  → D alors  A,C → D</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Les voleurs de données s&#8217;y intéressent fortement&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Les voleurs de données s&#8217;y intéressent fortement&#8230;&#8203; (<em>social engineering attacks</em>)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Union</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">si A  →  B et A → C alors A → B,C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;appliquer l'<strong>encapsulation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(ne concerne bien évidemment que les cibles d&#8217;une même source)</p>
+<p class="tableblock">Permet d&#8217;appliquer l'<strong>encapsulation</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Décomposition</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">si A → B,C alors A → B et A → C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pour revenir à l&#8217;évidence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;inverse de l&#8217;union</p></td>
 </tr>
 </tbody>
 </table>
@@ -754,6 +755,10 @@ est considéré comme une source (voir R1)</p>
 associée à une contrainte d&#8217;unicité vers les entités concernées par la relation many-to-many.</p>
 </div>
 <div class="paragraph">
+<p>Le changement de statut qui consiste à passer d&#8217;une association many-to-many à une entité,
+est une <strong>réification</strong> (en philosopie, action qui consiste à <em>transposer une abstraction en objet concret</em>)</p>
+</div>
+<div class="paragraph">
 <p><span class="image"><img src="images/classe-association-2-entite-id.png" alt="classe association 2 entite id" title="2 association-entite"></span></p>
 </div>
 <div class="admonitionblock note">
@@ -764,7 +769,8 @@ associée à une contrainte d&#8217;unicité vers les entités concernées par l
 </td>
 <td class="content">
 Observez bien le changement de multiplicité. A noter aussi que c&#8217;est la note, liée à l&#8217;entité <code>AB</code>
-qui spécifie la contrainte associée à cette entité qui aurait pu être exprimée sous la forme d&#8217;une simple <strong>contrainte d&#8217;unicité</strong>.
+qui spécifie la contrainte associée à cette entité qui aurait pu être également exprimée
+sous la forme d&#8217;une simple <strong>contrainte d&#8217;unicité</strong>.
 </td>
 </tr>
 </table>
@@ -839,6 +845,22 @@ idEtat -&gt; LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATIO
 <li>
 <p>L&#8217;analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.</p>
 </li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+indices : A/ L&#8217;historicité d&#8217;un emprunt peut ne pas être garanti.  B/ Présence d&#8217;une DF non directe !
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Établir le GD ainsi qu&#8217;un MCD correspondant.</p>
 </li>
@@ -863,6 +885,10 @@ qu&#8217;un logiciel (id, nom, éditeur) a été installé sur un serveur (id, n
 <div class="sect4">
 <h5 id="ex-5"><a class="anchor" href="#ex-5"></a>Ex 5</h5>
 <div class="paragraph">
+<p>On a demandé à un analyste de modéliser le domaine métier d&#8217;un quicailler.
+Dans ce but, il décide de rencontrer un vendeur la quincaillerie.</p>
+</div>
+<div class="paragraph">
 <p>Dialogue dans une quincaillerie de détail :</p>
 </div>
 <div class="dlist">
@@ -877,7 +903,7 @@ qu&#8217;un logiciel (id, nom, éditeur) a été installé sur un serveur (id, n
 </dd>
 <dt class="hdlist1">A : avez-vous un seul fournisseur ?</dt>
 <dd>
-<p>V : non, par exemple cette vis nous est proposée par Grosdétail à 0,12 € et 0,35 € chez BigSA.</p>
+<p>V : non, par exemple cette vis nous est proposée par Grosdétail à 0,12 € et 0,18 € chez BigSA.</p>
 </dd>
 <dt class="hdlist1">A: comment sont classées vos marchandises ?</dt>
 <dd>
