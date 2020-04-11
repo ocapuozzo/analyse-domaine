@@ -216,7 +216,7 @@ En phase d'analyse, nous ne retiendrons que les DM élémentaire, directe et ré
 |Exemple
 
 |Dépendances Multivaluées Réciproques (DMR)
-| A-\->-\->o\<--\<--B
+| A ->->o<-<-B
 
 ou
 
@@ -253,13 +253,13 @@ Présentation des deux principes.
 ====
 *Principe 1 -  DF First*
 
-Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B \->> A,
-seule la DF  (A -> B) est retenue. (prévisage d'une relation type many-to-one).
+Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B ->-> A,
+seule la DF  (A -> B) sera retenue. (prévisage d'une relation type many-to-one).
 
 ====
 
 ====
-*Principe 2 - DF Multi-Attributs == DMR*
+*Principe 2 - DF Source Multi-Attributs == DMR*
 
 Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple (A,B,C) -> D,E ) se doit d'être une
 DMR élémentaire et directe et réciproque entre ses membres (prévisage d'une relation type many-to-many).
@@ -359,7 +359,9 @@ est considéré comme une source (voir R1)
 |GD
 |Modèle du domaine
 
-|&nbsp;
+|`A -\-> C`  et `B -\-> C`
+
+-------------------------------
 
 image:gd-4.png[title="classe association"]&nbsp;
 | image:diag-gd-4.png[title="2 associations"]
@@ -376,9 +378,12 @@ image:gd-4.png[title="classe association"]&nbsp;
 |GD
 |Modèle du domaine
 
-|&nbsp;
+|`(A,B)` : A et B  sont en DMR
+(une valeur de `A` permet d'atteindre plus d'une valeurs de `B`, et inversemement)
 
-&nbsp; &nbsp; A-\->>o<\<--B
+----------------------------
+
+&nbsp; &nbsp; `A-\->>o<\<--B`
 
 | image:diag-gd-2.png[title="association many to many"]
 
@@ -395,7 +400,15 @@ image:gd-4.png[title="classe association"]&nbsp;
 |GD
 |Modèle du domaine
 
-| image:gd-3.png[title="classe association"]&nbsp;
+|`(A,B) -\-> C`
+
+La connaissance d'une valeur de `A` *et* de `B` permet d'atteindre *au plus* une valeur de `C`.
+
+Dit autrement, la connaissance d'un couple de valeurs `(A,B)` permet de connaitre, au plus une valeur de `C`.
+
+-------------------------------------
+
+image:gd-3.png[title="classe association"]&nbsp;
 | image:diag-gd-asso.png[title="classe association"]
 
 |===
@@ -409,8 +422,12 @@ image:gd-4.png[title="classe association"]&nbsp;
 |GD
 |Modèle du domaine
 
-|&nbsp;
+|
+`(A,B) -\-> C`
+`E -\-> C`
+`C -\-> D`
 
+----------------------------------------------
 image:gd-exemple.png[title="gd exemple"]&nbsp;
 | image:classe-association-1.png[title="2 associations"]
 
