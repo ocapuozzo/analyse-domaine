@@ -6,7 +6,7 @@ v1.0, 2020-03-20: Version asciidoc
 :listing-caption: Listing
 :toc-title: Table des matieres
 :toc:
-:toclevels: 4
+:toclevels: 3
 :source-highlighter: coderay
 ifdef::backend-pdf[]
 :source-highlighter: rouge
@@ -27,14 +27,14 @@ endif::[]
 == Présentation
 
 ifdef::backend-pdf[]
-image:cogitas.png[title="Vue.js", 200]
+image:cogitas.png[title="cogitas", 200]
 endif::[]
 
 ifndef::backend-pdf[]
-image:cogitas.png[title="Vue.js", 200]
+image:cogitas.png[title="cogitas", 200]
 endif::[]
 
-Ce support vise à présenter une aide méthodologique en ce sens, en vue de constituer un modèle de domaine.
+Ce support vise à présenter une aide méthodologique en analyse, en vue de constituer un modèle de domaine.
 
 // <<<
 include::_df_dm.adoc[leveloffset=+1]

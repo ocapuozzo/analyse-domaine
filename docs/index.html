@@ -33,24 +33,12 @@
 <ul class="sectlevel3">
 <li><a href="#caractère-d-unicité">Caractère d&#8217;unicité</a></li>
 <li><a href="#propriétés-des-df-axiomes-d-armstrong">Propriétés des DF : Axiomes d&#8217;Armstrong</a></li>
-<li><a href="#qualités-remarquables-des-df">Qualités remarquables des DF</a>
-<ul class="sectlevel4">
-<li><a href="#qualité-élémentaire">Qualité élémentaire</a></li>
-<li><a href="#qualité-directe">Qualité directe</a></li>
-</ul>
-</li>
+<li><a href="#qualités-remarquables-des-df">Qualités remarquables des DF</a></li>
 </ul>
 </li>
 <li><a href="#dépendance-multivaluée">Dépendance Multivaluée</a>
 <ul class="sectlevel3">
-<li><a href="#qualités-de-dm">Qualités de DM</a>
-<ul class="sectlevel4">
-<li><a href="#qualité-élémentaire-2">Qualité élémentaire</a></li>
-<li><a href="#qualité-directe-2">Qualité directe</a></li>
-<li><a href="#réciproques">Réciproques</a></li>
-<li><a href="#caractère-d-unicité-2">Caractère d&#8217;unicité</a></li>
-</ul>
-</li>
+<li><a href="#qualités-de-dm">Qualités de DM</a></li>
 </ul>
 </li>
 <li><a href="#conduite-de-l-analyse">Conduite de l&#8217;analyse</a></li>
@@ -67,15 +55,7 @@
 <li><a href="#réification-d-une-classe-association">Réification d&#8217;une classe &lt;&lt;association&gt;&gt;</a></li>
 <li><a href="#héritage-et-df-dm">Héritage et DF/DM</a></li>
 <li><a href="#exemple-de-conduite-d-analyse">Exemple de conduite d&#8217;analyse</a></li>
-<li><a href="#exercices">Exercices</a>
-<ul class="sectlevel4">
-<li><a href="#ex-1">Ex 1</a></li>
-<li><a href="#ex-2">Ex 2</a></li>
-<li><a href="#ex-3">Ex 3</a></li>
-<li><a href="#ex-4">Ex 4</a></li>
-<li><a href="#ex-5">Ex 5</a></li>
-</ul>
-</li>
+<li><a href="#exercices">Exercices</a></li>
 </ul>
 </li>
 <li><a href="#formes-normales">Formes Normales</a></li>
@@ -99,10 +79,10 @@
 <h2 id="présentation"><a class="anchor" href="#présentation"></a>Présentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><img src="images/cogitas.png" alt="cogitas" width="200" title="Vue.js"></span></p>
+<p><span class="image"><img src="images/cogitas.png" alt="cogitas" width="200" title="cogitas"></span></p>
 </div>
 <div class="paragraph">
-<p>Ce support vise à présenter une aide méthodologique en ce sens, en vue de constituer un modèle de domaine.</p>
+<p>Ce support vise à présenter une aide méthodologique en analyse, en vue de constituer un modèle de domaine.</p>
 </div>
 </div>
 </div>
@@ -219,7 +199,7 @@ La source d&#8217;une dépendance engendrera, dans la majorité des cas, une <st
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Augmentation</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">si A  → B alors  A,C  → B &nbsp;  ∀C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">si A  → B alors  A,C  → B  &#160;   ∀C</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La source peut être augmentée sans nuire à la DF initiale. Une <strong>erreur d&#8217;analyse</strong> courante.</p></td>
 </tr>
 <tr>
@@ -285,7 +265,7 @@ La source d&#8217;une dépendance engendrera, dans la majorité des cas, une <st
 tel que C est sous-ensemble de A, C différent de A, et <code>C → B</code>.</p>
 </div>
 <div class="paragraph">
-<p>Contre-Exemple : Il aurait été faux de conserver la DF :</p>
+<p>Exemple : Il aurait été faux de conserver la DF :</p>
 </div>
 <div class="paragraph">
 <p><code>(id_commande, id_fournisseur)  --- &gt; date_commande</code></p>
@@ -381,7 +361,7 @@ A &#8594;&#8594; B</p>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Def</strong> : Une DM est <strong>élémentaire</strong> si la source est minimum.</p>
+<p><strong>Def</strong> : Une DM est <strong>élémentaire</strong> si la source est minimum (non augmentée).</p>
 </div>
 </div>
 </div>
@@ -636,8 +616,8 @@ si l&#8217;auteur du diagramme spécifie clairement qu&#8217;il s&#8217;agit de 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;</p>
-<p class="tableblock">&nbsp; &nbsp; A--&gt;B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#160;</p>
+<p class="tableblock">&#160; &#160; A--&gt;B</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-1.png" alt="diag gd 1" title="entite du domaine"></span></p></td>
 </tr>
 </tbody>
@@ -665,7 +645,7 @@ est considéré comme une source (voir R1)</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>A --&gt; C</code>  et <code>B --&gt; C</code></p>
 <p class="tableblock">-------------------------------</p>
-<p class="tableblock"><span class="image"><img src="images/gd-4.png" alt="gd 4" title="classe association"></span>&nbsp;</p></td>
+<p class="tableblock"><span class="image"><img src="images/gd-4.png" alt="gd 4" title="classe association"></span>&#160;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-4.png" alt="diag gd 4" title="2 associations"></span></p></td>
 </tr>
 </tbody>
@@ -694,7 +674,7 @@ est considéré comme une source (voir R1)</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>(A,B)</code> : A et B  sont en DMR
 (une valeur de <code>A</code> permet d&#8217;atteindre plus d&#8217;une valeurs de <code>B</code>, et inversemement)</p>
 <p class="tableblock">----------------------------</p>
-<p class="tableblock">&nbsp; &nbsp; <code>A--&gt;&gt;o&lt;&lt;--B</code></p></td>
+<p class="tableblock">&#160; &#160; <code>A--&gt;&gt;o&lt;&lt;--B</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-2.png" alt="diag gd 2" title="association many to many"></span></p></td>
 </tr>
 </tbody>
@@ -724,7 +704,7 @@ est considéré comme une source (voir R1)</p>
 <p class="tableblock">La connaissance d&#8217;une valeur de <code>A</code> <strong>et</strong> de <code>B</code> permet d&#8217;atteindre <strong>au plus</strong> une valeur de <code>C</code>.</p>
 <p class="tableblock">Dit autrement, la connaissance d&#8217;un couple de valeurs <code>(A,B)</code> permet de connaitre, au plus une valeur de <code>C</code>.</p>
 <p class="tableblock">-------------------------------------</p>
-<p class="tableblock"><span class="image"><img src="images/gd-3.png" alt="gd 3" title="classe association"></span>&nbsp;</p></td>
+<p class="tableblock"><span class="image"><img src="images/gd-3.png" alt="gd 3" title="classe association"></span>&#160;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/diag-gd-asso.png" alt="diag gd asso" title="classe association"></span></p></td>
 </tr>
 </tbody>
@@ -750,7 +730,7 @@ est considéré comme une source (voir R1)</p>
 <code>E --&gt; C</code>
 <code>C --&gt; D</code></p>
 <p class="tableblock">----------------------------------------------
-<span class="image"><img src="images/gd-exemple.png" alt="gd exemple" title="gd exemple"></span>&nbsp;</p></td>
+<span class="image"><img src="images/gd-exemple.png" alt="gd exemple" title="gd exemple"></span>&#160;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/classe-association-1.png" alt="classe association 1" title="2 associations"></span></p></td>
 </tr>
 </tbody>
@@ -935,7 +915,7 @@ Dans ce but, il décide de rencontrer un vendeur la quincaillerie.</p>
 </dd>
 <dt class="hdlist1">A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez Duclou, 125 rue Emile Sayfulin 93000 Ouzbekistan sur seine pour  45 boites (de 100 pièces) de CL15.2TR (visse à placo) et 15 boites de FX12OP.</dt>
 <dd>
-<p>&nbsp;</p>
+<p>&#160;</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1032,7 +1012,7 @@ On remarquera l&#8217;absence de clé primaire composée, remplacée par une cl�
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2020-03-23 08:41:51 CET
+Last updated 2020-04-11 19:20:40 CEST
 </div>
 </div>
 </body>

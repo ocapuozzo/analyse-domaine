@@ -68,7 +68,7 @@ Les axiomes d'Armstrong (du nom de **_William Ward Armstrong_**, informaticien e
 |Tautologie
 
 |*Augmentation*
-|si A  → B alors  A,C  → B &nbsp;  ∀C
+|si A  → B alors  A,C  → B  &#160;   ∀C
 |La source peut être augmentée sans nuire à la DF initiale. Une *erreur d'analyse* courante.
 
 |*Transitivité*
@@ -117,7 +117,7 @@ Intéressons-nous à ces qualités.
 La DF : `A → B` est élémentaire s'il n'existe pas un ensemble de propriétés C,
 tel que C est sous-ensemble de A, C différent de A, et `C → B`.
 
-Contre-Exemple : Il aurait été faux de conserver la DF :
+Exemple : Il aurait été faux de conserver la DF :
 
 `(id_commande, id_fournisseur)  --- > date_commande`
 
@@ -191,7 +191,7 @@ En phase d'analyse, nous ne retiendrons que les DM élémentaire, directe et ré
 
 ======
 
-*Def* : Une DM est *élémentaire* si la source est minimum.
+*Def* : Une DM est *élémentaire* si la source est minimum (non augmentée).
 
 ======
 
@@ -339,9 +339,9 @@ Ce mode de représentation (couverture minimale)
 |GD
 |Modèle du domaine
 
-|&nbsp;
+|&#160;
 
-&nbsp; &nbsp; A-\->B
+&#160; &#160; A-\->B
 
 | image:diag-gd-1.png[title="entite du domaine"]
 
@@ -363,7 +363,7 @@ est considéré comme une source (voir R1)
 
 -------------------------------
 
-image:gd-4.png[title="classe association"]&nbsp;
+image:gd-4.png[title="classe association"]&#160;
 | image:diag-gd-4.png[title="2 associations"]
 
 |===
@@ -383,7 +383,7 @@ image:gd-4.png[title="classe association"]&nbsp;
 
 ----------------------------
 
-&nbsp; &nbsp; `A-\->>o<\<--B`
+&#160; &#160; `A-\->>o<\<--B`
 
 | image:diag-gd-2.png[title="association many to many"]
 
@@ -408,7 +408,7 @@ Dit autrement, la connaissance d'un couple de valeurs `(A,B)` permet de connaitr
 
 -------------------------------------
 
-image:gd-3.png[title="classe association"]&nbsp;
+image:gd-3.png[title="classe association"]&#160;
 | image:diag-gd-asso.png[title="classe association"]
 
 |===
@@ -428,7 +428,7 @@ image:gd-3.png[title="classe association"]&nbsp;
 `C -\-> D`
 
 ----------------------------------------------
-image:gd-exemple.png[title="gd exemple"]&nbsp;
+image:gd-exemple.png[title="gd exemple"]&#160;
 | image:classe-association-1.png[title="2 associations"]
 
 |===
@@ -543,7 +543,7 @@ V : nous avons plusieurs familles de quincaillerie, ainsi la VB25.4AI est de la 
 A : pouvez-vous me montrer un exemplaire de commande ?::
 V : tenez, voici la dernière.
 A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez Duclou, 125 rue Emile Sayfulin 93000 Ouzbekistan sur seine pour  45 boites (de 100 pièces) de CL15.2TR (visse à placo) et 15 boites de FX12OP.::
-&nbsp;
+&#160;
 
 * Établir le GD ainsi qu'un MCD correspondant.
 
@@ -590,3 +590,30 @@ TIP: On remarquera l'absence de clé primaire composée, remplacée par une clé
 image:diagUML-analyse-sr-ManyToMany-Porteuse-v2.png[title="ManyToMany"]
 
 == Exercices
+
+
+////
+[NOTE]
+--
+Ici, c'est un apparté (sidebar, dont le rendu peut varier, c'est responsive).
+On y met ce que l'on veut, par exemple une liste :
+
+* level1
+** level2
+* level1
+[sidebar]
+****
+WARNING: Ici, c'est un apparté dans l'apparté, avec ci-dessous un tableau :
+|===
+|col1 | col2| col3
+|A
+|B
+|C
+|===
+[sidebar]
+*****
+IMPORTANT: Et on peut continueeeeer ! Taïôôôôôôôôôô
+*****
+****
+--
+////

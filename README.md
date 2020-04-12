@@ -1,6 +1,6 @@
 # aide à l'analyse du domaine
 
-Concepts et principes de base de l'analyse, à destination d'étudiants en développement, 
+Concepts et principes de base de l'analyse, à destination d'étudiants en développement logiciel, 
 ayant une première expérience dans ce domaine.
 
 * Concepts de DF et DM/DMR
