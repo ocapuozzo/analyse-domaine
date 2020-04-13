@@ -81,16 +81,16 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-resources-exemples</id>
+                        <id>copy-resources-assets</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-docs/exemples</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-docs/assets</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/docs/exemples</directory>
+                                    <directory>src/docs/assets</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>

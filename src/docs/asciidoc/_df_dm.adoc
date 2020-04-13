@@ -458,7 +458,7 @@ Vous trouverez un autre exemple dans le chapitre MCD vers SR (entité `Documenta
 === Exemple de conduite d'analyse
 
 Su la base d'une petite étude de cas improvisée avec le concours
-d'étudiants en ligne : link:exemples/etude-de-cas-exemple-vote.pdf[etude-de-cas-exemple-vote.pdf] (link:exemples/etude-de-cas-exemple-vote.odt[source odt])
+d'étudiants en ligne : link:assets/etude-de-cas-exemple-vote.pdf[etude-de-cas-exemple-vote.pdf] (link:assets/etude-de-cas-exemple-vote.odt[source odt])
 
 === Exercices
 
