@@ -518,7 +518,9 @@ TIP: indices : A/ L'historicité d'un emprunt peut ne pas être garanti.  B/ Pr�
 
 Le service informatique de l'organisation X, organisée en départements, souhaite modéliser le fait
 qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os),
-à une date donnée, pour un département de l'entreprise (id, nom, budget).
+à une date donnée, à la demande d'un département de l'entreprise (id, nom, budget).
+Botez que ce genre de demande (installation et mise à disposition d'un logiciel) ne peut être honorée que si le dit département ne dispose pas déjà d'une version
+de ce même logiciel sur un des serveurs de l'entreprise.
 
 * Établir le GD ainsi qu'un MCD correspondant.
 
