@@ -251,9 +251,9 @@ ainsi que les dépendances multivaluées *réciproques*.
 Présentation des deux principes.
 
 ====
-*Principe 1 -  DF First*
+*Principe 1 -  la DF prime sur la DM (seules les DMR sont retenues)*
 
-Lorsque, dans un contexte donné, A et B sont en relation de type A -> B et B ->-> A,
+Lorsque, dans un contexte donné, A et B sont en relation directe de type A -> B et B ->-> A,
 seule la DF  (A -> B) sera retenue. (prévisage d'une relation type many-to-one).
 
 ====
@@ -262,7 +262,7 @@ seule la DF  (A -> B) sera retenue. (prévisage d'une relation type many-to-one)
 *Principe 2 - DF Source Multi-Attributs == DMR*
 
 Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple (A,B,C) -> D,E ) se doit d'être une
-DMR élémentaire et directe et réciproque entre ses membres (prévisage d'une relation type many-to-many).
+DMR *élémentaire*, *directe* et *réciproque* entre ses membres (prévisage d'une relation type many-to-many).
 
 En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :
 

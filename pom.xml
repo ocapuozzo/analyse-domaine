@@ -81,7 +81,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-resources-assets</id>
+                        <id>copy-resources-others</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -109,7 +109,7 @@
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/generated-docs</directory>
-                                    <filtering>true</filtering>
+                                    <filtering>false</filtering>
                                     <excludes>
                                         <exclude>.asciidoctor/**</exclude>
                                     </excludes>
@@ -117,19 +117,10 @@
                             </resources>
                         </configuration>
                     </execution>
-
                 </executions>
-
             </plugin>
 
-            <!--
-            no more, if main page adoc is named index.adoc !!
-
-            rename/create index.html for ghpages/docs
-             <!> index.html will be image html of file in src/docs/asciidoc/
-                 which name are same as directory root project
-             -->
-            <!--
+            <!-- rename index.pdf to project_name.pdf -->
             <plugin>
                 <groupId>com.coderplus.maven.plugins</groupId>
                 <artifactId>copy-rename-maven-plugin</artifactId>
@@ -142,14 +133,13 @@
                             <goal>rename</goal>
                         </goals>
                         <configuration>
-                            https://stackoverflow.com/questions/9849868/getting-name-of-last-folder-from-maven-project-basedir
-                            <sourceFile>docs/${project.file.parentFile.name}.html</sourceFile>
-                            <destinationFile>docs/index.html</destinationFile>
+                            <!--https://stackoverflow.com/questions/9849868/getting-name-of-last-folder-from-maven-project-basedir -->
+                            <sourceFile>${project.build.directory}/pdf/index.pdf</sourceFile>
+                            <destinationFile>${project.build.directory}/pdf/${project.file.parentFile.name}.pdf</destinationFile>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            -->
             <plugin>
                 <groupId>de.saumya.mojo</groupId>
                 <artifactId>gem-maven-plugin</artifactId>
