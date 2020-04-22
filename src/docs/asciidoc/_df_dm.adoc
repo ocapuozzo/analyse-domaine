@@ -551,6 +551,197 @@ A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez
 
 == Formes Normales
 
+On entend par _forme normale_ (en anglais _normal form_), un système de règles qui
+qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, ... 6FN)
+
+Les formes normales ont été introduites par Edgar F. Codd (modèle relationnel).
+
+Il est courant de dire qu'une base de données relationnelle est *_normalisée_* si elle est au minimum en troisième
+forme normale. Un tel niveau de normalisation prémunie le modèle d'anomalies d'insertion, de mise à jour
+et de suppression, et participe à l'*intégrité* du système.
+
+
+[NOTE]
+====
+
+En cas de problème de cohérence de données ou de mauvaise performance, l'analyse qualitative du modèle
+(minimum 3FN) est très souvent l'objet du premier audit. Le but étant de *vérifier la robustesse de la conception*, l'absence de
+de redondance et les problèmes sous-jacents.
+
+La normalisation s’applique à toutes les entités et aux associations porteuses de propriétés.
+====
+
+=== 1FN
+
+====
+1FN : Est en première forme normale, une relation (ayant par définition une clé) dont les attributs possèdent tous
+une valeur *sémantiquement atomique*
+====
+
+.Livre no 1FN
+|===
+|id | titre | auteur | themes
+
+|1
+|eXtreme Programming: La référence
+|Kent Beck
+|Code, Design, Test Unitaire
+
+|===
+
+La valeur de la colonne `themes` n'est pas atomique (c'est un ensemble de valeurs)
+
+Pour corriger cela, on pourrait faire ainsi :
+
+.Livre 1FN ? pas vraiment
+|===
+|id | titre | auteur | theme1 | theme2 | theme3
+
+|1
+|eXtreme Programming: La référence
+|Kent Beck
+|Code
+|Design
+|Test Unitaire
+
+|===
+
+Le problème se posera si un livre présente plus de 3 thèmes...
+La multiplication des colonnes dénote une *redondance sémantique*.
+
+La solution en 1FN sera donc :
+
+.Livre 1FN
+|===
+|id | titre | auteur
+
+|1
+|eXtreme Programming: La référence
+|Kent Beck
+
+|===
+
+.Theme
+|===
+|id | theme
+
+|1
+|Code
+
+| 2
+|Design
+
+| 3
+|Test Unitaire
+|===
+
+.LivreThemes
+|===
+|idLivre | idTheme
+
+|1
+|1
+
+|1
+|2
+
+|1
+|3
+|===
+
+Passant ainsi d'une table à 3 tables : prix de la normalisation !
+
+
+=== 2FN
+
+====
+2FN : Une Entité/Relation est en deuxième forme normale si elle est en 1ère forme normale et si tous ses constituants, n’appartenant pas à la clé, dépendent de celle-ci par une dépendance fonctionnelle élémentaire (minimale).
+====
+
+S'il n'existe pas un attribut non clé, qui dépend d'une partie seulement de la clé.
+
+Si toutes les propriétés non-clé sont en *DF élémentaire avec la clé*.
+
+Exemple
+
+  idChantier -> n°rue, rue, cp, ville
+  (idChantier, dateDebutChantier) -> idChefChantier
+
+image:GDno2FN.png[title="gd no 2FN"]
+
+La DF à source composée (N°Chantier, DateDébutChantier) -> N°ChefChantier n’est pas en 2FN
+car elle n’est pas élémentaire. Il existe un DF entre la propriété N°ChefChantier et N°Chantier qui est une partie de la clé.
+
+image:GD2FN.png[title="gd 2FN"]
+
+=== 3FN
+
+====
+3FN : Une Entité/Relation est en troisième forme normale si elle est en 2FN
+et si tous ses constituants n’appartenant pas à la clé dépendent de
+celle-ci pas une *dépendance fonctionnelle directe*.
+====
+
+Toutes les propriétés non-clé sont en DF élémentaire directe avec la clé 			(pas de DF transitive).
+
+Exemple. _Un chantier, localisé à une adresse précise, est commandé par un et un seul client._
+
+image:GDno3FN.png[title="gd no 3FN"]
+
+En l'état de l'analyse, la propriété « NomCLient » sera présente à la fois dans l'entité CHANTIER et CLIENT.
+
+Afin d’éviter les redondances, on prendra soin de supprimer toutes les dépendances transitives.
+
+image:GD3FN.png[title="gd 3FN"]
+
+
+=== 3FN Boyce-Codd
+
+====
+3FN Boyce-Codd: Une Entité/Relation est en 3FN Boyce-Codd si elle est en 3FN et
+si les seules DF élémentaires sont celles dans lesquelles une clé détermine une propriété de
+l'entité/relation n'appartenant pas à la clé.
+====
+
+Les seules DF élémentaires sont celles liant les propriétés non clé avec la clé.
+
+Exemple : _Un produit est fabriqué par plusieurs usines. Une usine fabrique plusieurs produits.
+Dans une région un produit est fabriqué par une seule usine.
+Il y a plusieurs usine dans une région._
+
+Une première analyse nous a permis de constituer le GDF suivant :
+
+`(idRegion, idProduit) -> idUsine`
+image:GDno3FNBC.png[title="gd no 3FNBC"]
+
+L'analyse propose un modèle en 3FN car aucun attribut non clé ne dépend d’une partie
+de la clé ou d’un attribut non clé, mais n'est pas en 3FN de Boyce-Codd.
+En effet il existe une DF directe et élémentaire entre une propriété non-clé et une partie de la clé:
+
+`idUsine -> idRegion`
+
+Du coup, nous transformons l'analyse :
+
+image:GD3FNBC.png[title="gd 3FNBC"]
+
+=== 4FN et plus
+
+Concerne les DMR. En prenant soin de concevoir (et de ne retenir) que des dépendances
+directes et élémentaires (et réciproques pour les DM), et de vous assurer que les seules
+dépendances de la relation sont celles qui lient la clé avec les autres attributs,
+vous vous assurez que votre modèle sera en 4FN.
+
+=== Exercices
+
+==== Ex 6
+Un produit est caractérisé par un poids et un prix unitaire hors taxe.
+Un produit est soit un produit fini, composé d'autres produits, soit un composant
+entrant dans la composition d'un produit pour une quantité donnée. Les produits finis
+font l'objet d'un contrôle qualité visé par un personnel qualifié.
+
+Concevoir un GD puis une MCD.
+
+
 == Modèle de domaine vers SR
 Ce chapitre présente les principaux cas d’implémentation d’une analyse métier représenté
 par un diagramme de classes du domaine métier (UML), en particulier les associations *ManyToOne*,

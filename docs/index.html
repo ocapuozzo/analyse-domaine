@@ -58,7 +58,16 @@
 <li><a href="#exercices">Exercices</a></li>
 </ul>
 </li>
-<li><a href="#formes-normales">Formes Normales</a></li>
+<li><a href="#formes-normales">Formes Normales</a>
+<ul class="sectlevel3">
+<li><a href="#1fn">1FN</a></li>
+<li><a href="#2fn">2FN</a></li>
+<li><a href="#3fn">3FN</a></li>
+<li><a href="#3fn-boyce-codd">3FN Boyce-Codd</a></li>
+<li><a href="#4fn-et-plus">4FN et plus</a></li>
+<li><a href="#exercices-2">Exercices</a></li>
+</ul>
+</li>
 <li><a href="#modèle-de-domaine-vers-sr">Modèle de domaine vers SR</a>
 <ul class="sectlevel3">
 <li><a href="#manytoone">ManyToOne</a></li>
@@ -68,7 +77,7 @@
 <li><a href="#manytomany-porteuse-réification">ManyToMany porteuse (réification)</a></li>
 </ul>
 </li>
-<li><a href="#exercices-2">Exercices</a></li>
+<li><a href="#exercices-3">Exercices</a></li>
 </ul>
 </li>
 </ul>
@@ -933,7 +942,326 @@ Dans ce but, il décide de rencontrer un vendeur la quincaillerie.</p>
 </div>
 <div class="sect2">
 <h3 id="formes-normales"><a class="anchor" href="#formes-normales"></a>Formes Normales</h3>
-
+<div class="paragraph">
+<p>On entend par <em>forme normale</em> (en anglais <em>normal form</em>), un système de règles qui
+qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, &#8230;&#8203; 6FN)</p>
+</div>
+<div class="paragraph">
+<p>Les formes normales ont été introduites par Edgar F. Codd (modèle relationnel).</p>
+</div>
+<div class="paragraph">
+<p>Il est courant de dire qu&#8217;une base de données relationnelle est <strong><em>normalisée</em></strong> si elle est au minimum en troisième
+forme normale. Un tel niveau de normalisation prémunie le modèle d&#8217;anomalies d&#8217;insertion, de mise à jour
+et de suppression, et participe à l'<strong>intégrité</strong> du système.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En cas de problème de cohérence de données ou de mauvaise performance, l&#8217;analyse qualitative du modèle
+(minimum 3FN) est très souvent l&#8217;objet du premier audit. Le but étant de <strong>vérifier la robustesse de la conception</strong>, l&#8217;absence de
+de redondance et les problèmes sous-jacents.</p>
+</div>
+<div class="paragraph">
+<p>La normalisation s’applique à toutes les entités et aux associations porteuses de propriétés.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="1fn"><a class="anchor" href="#1fn"></a>1FN</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>1FN : Est en première forme normale, une relation (ayant par définition une clé) dont les attributs possèdent tous
+une valeur <strong>sémantiquement atomique</strong></p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Livre no 1FN</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">id</th>
+<th class="tableblock halign-left valign-top">titre</th>
+<th class="tableblock halign-left valign-top">auteur</th>
+<th class="tableblock halign-left valign-top">themes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eXtreme Programming: La référence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kent Beck</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code, Design, Test Unitaire</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>La valeur de la colonne <code>themes</code> n&#8217;est pas atomique (c&#8217;est un ensemble de valeurs)</p>
+</div>
+<div class="paragraph">
+<p>Pour corriger cela, on pourrait faire ainsi :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Livre 1FN ? pas vraiment</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">id</th>
+<th class="tableblock halign-left valign-top">titre</th>
+<th class="tableblock halign-left valign-top">auteur</th>
+<th class="tableblock halign-left valign-top">theme1</th>
+<th class="tableblock halign-left valign-top">theme2</th>
+<th class="tableblock halign-left valign-top">theme3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eXtreme Programming: La référence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kent Beck</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test Unitaire</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Le problème se posera si un livre présente plus de 3 thèmes&#8230;&#8203;
+La multiplication des colonnes dénote une <strong>redondance sémantique</strong>.</p>
+</div>
+<div class="paragraph">
+<p>La solution en 1FN sera donc :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Livre 1FN</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">id</th>
+<th class="tableblock halign-left valign-top">titre</th>
+<th class="tableblock halign-left valign-top">auteur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eXtreme Programming: La référence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kent Beck</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Theme</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">id</th>
+<th class="tableblock halign-left valign-top">theme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test Unitaire</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. LivreThemes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">idLivre</th>
+<th class="tableblock halign-left valign-top">idTheme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Passant ainsi d&#8217;une table à 3 tables : prix de la normalisation !</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="2fn"><a class="anchor" href="#2fn"></a>2FN</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>2FN : Une Entité/Relation est en deuxième forme normale si elle est en 1ère forme normale et si tous ses constituants, n’appartenant pas à la clé, dépendent de celle-ci par une dépendance fonctionnelle élémentaire (minimale).</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>S&#8217;il n&#8217;existe pas un attribut non clé, qui dépend d&#8217;une partie seulement de la clé.</p>
+</div>
+<div class="paragraph">
+<p>Si toutes les propriétés non-clé sont en <strong>DF élémentaire avec la clé</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Exemple</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>idChantier -&gt; n°rue, rue, cp, ville
+(idChantier, dateDebutChantier) -&gt; idChefChantier</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GDno2FN.png" alt="GDno2FN" title="gd no 2FN"></span></p>
+</div>
+<div class="paragraph">
+<p>La DF à source composée (N°Chantier, DateDébutChantier) &#8594; N°ChefChantier n’est pas en 2FN
+car elle n’est pas élémentaire. Il existe un DF entre la propriété N°ChefChantier et N°Chantier qui est une partie de la clé.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GD2FN.png" alt="GD2FN" title="gd 2FN"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="3fn"><a class="anchor" href="#3fn"></a>3FN</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>3FN : Une Entité/Relation est en troisième forme normale si elle est en 2FN
+et si tous ses constituants n’appartenant pas à la clé dépendent de
+celle-ci pas une <strong>dépendance fonctionnelle directe</strong>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Toutes les propriétés non-clé sont en DF élémentaire directe avec la clé 			(pas de DF transitive).</p>
+</div>
+<div class="paragraph">
+<p>Exemple. <em>Un chantier, localisé à une adresse précise, est commandé par un et un seul client.</em></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GDno3FN.png" alt="GDno3FN" title="gd no 3FN"></span></p>
+</div>
+<div class="paragraph">
+<p>En l&#8217;état de l&#8217;analyse, la propriété « NomCLient » sera présente à la fois dans l&#8217;entité CHANTIER et CLIENT.</p>
+</div>
+<div class="paragraph">
+<p>Afin d’éviter les redondances, on prendra soin de supprimer toutes les dépendances transitives.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GD3FN.png" alt="GD3FN" title="gd 3FN"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="3fn-boyce-codd"><a class="anchor" href="#3fn-boyce-codd"></a>3FN Boyce-Codd</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>3FN Boyce-Codd: Une Entité/Relation est en 3FN Boyce-Codd si elle est en 3FN et
+si les seules DF élémentaires sont celles dans lesquelles une clé détermine une propriété de
+l&#8217;entité/relation n&#8217;appartenant pas à la clé.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Les seules DF élémentaires sont celles liant les propriétés non clé avec la clé.</p>
+</div>
+<div class="paragraph">
+<p>Exemple : <em>Un produit est fabriqué par plusieurs usines. Une usine fabrique plusieurs produits.
+Dans une région un produit est fabriqué par une seule usine.
+Il y a plusieurs usine dans une région.</em></p>
+</div>
+<div class="paragraph">
+<p>Une première analyse nous a permis de constituer le GDF suivant :</p>
+</div>
+<div class="paragraph">
+<p><code>(idRegion, idProduit) &#8594; idUsine</code>
+<span class="image"><img src="images/GDno3FNBC.png" alt="GDno3FNBC" title="gd no 3FNBC"></span></p>
+</div>
+<div class="paragraph">
+<p>L&#8217;analyse propose un modèle en 3FN car aucun attribut non clé ne dépend d’une partie
+de la clé ou d’un attribut non clé, mais n&#8217;est pas en 3FN de Boyce-Codd.
+En effet il existe une DF directe et élémentaire entre une propriété non-clé et une partie de la clé:</p>
+</div>
+<div class="paragraph">
+<p><code>idUsine &#8594; idRegion</code></p>
+</div>
+<div class="paragraph">
+<p>Du coup, nous transformons l&#8217;analyse :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/GD3FNBC.png" alt="GD3FNBC" title="gd 3FNBC"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="4fn-et-plus"><a class="anchor" href="#4fn-et-plus"></a>4FN et plus</h4>
+<div class="paragraph">
+<p>Concerne les DMR. En prenant soin de concevoir (et de ne retenir) que des dépendances
+directes et élémentaires (et réciproques pour les DM), et de vous assurer que les seules
+dépendances de la relation sont celles qui lient la clé avec les autres attributs,
+vous vous assurez que votre modèle sera en 4FN.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exercices-2"><a class="anchor" href="#exercices-2"></a>Exercices</h4>
+<div class="sect4">
+<h5 id="ex-6"><a class="anchor" href="#ex-6"></a>Ex 6</h5>
+<div class="paragraph">
+<p>Un produit est caractérisé par un poids et un prix unitaire hors taxe.
+Un produit est soit un produit fini, composé d&#8217;autres produits, soit un composant
+entrant dans la composition d&#8217;un produit pour une quantité donnée. Les produits finis
+font l&#8217;objet d&#8217;un contrôle qualité visé par un personnel qualifié.</p>
+</div>
+<div class="paragraph">
+<p>Concevoir un GD puis une MCD.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="modèle-de-domaine-vers-sr"><a class="anchor" href="#modèle-de-domaine-vers-sr"></a>Modèle de domaine vers SR</h3>
@@ -1005,7 +1333,7 @@ On remarquera l&#8217;absence de clé primaire composée, remplacée par une cl�
 </div>
 </div>
 <div class="sect2">
-<h3 id="exercices-2"><a class="anchor" href="#exercices-2"></a>Exercices</h3>
+<h3 id="exercices-3"><a class="anchor" href="#exercices-3"></a>Exercices</h3>
 
 </div>
 </div>
