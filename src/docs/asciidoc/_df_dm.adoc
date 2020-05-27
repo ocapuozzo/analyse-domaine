@@ -241,37 +241,43 @@ déclarer une contrainte d'unicité (`PRIMARY KEY`, `CANDIDATE KEY`, `UNIQUE`, .
 
 == Conduite de l'analyse
 
-Ce chapitre introduit 2 principes à suivre lorsqu'on analyse des données en vue de modéliser le domaine métier.
+Ce chapitre introduit les principes à suivre lorsqu'on analyse des données en vue de modéliser le domaine métier.
 
-Les deux règles sont des outils précieux en vue d'établir une base de données *cohérentes* et *sans doublons*.
+Cette démarche vise à établir une base de données *cohérentes* et *sans doublons*.
 
-IMPORTANT: Ne sont considérées ici que les dépendances *directes* et *élémentaires*,
-ainsi que les dépendances multivaluées *réciproques*.
-
-Présentation des deux principes.
 
 ====
-*Principe 1 -  la DF prime sur la DM (seules les DMR sont retenues)*
+*Principe de base - DEMR*
+
+IMPORTANT: Ne considérer que les dépendances *directes* et *élémentaires*,
+ainsi que les dépendances *multivaluées réciproques*.
+====
+
+====
+*Principe 1 -  la DF prime sur la DM*
 
 Lorsque, dans un contexte donné, A et B sont en relation directe de type A -> B et B ->-> A,
 seule la DF  (A -> B) sera retenue. (prévisage d'une relation type many-to-one).
+
+NOTE: Les seules DM retenues sont les DMR
 
 ====
 
 ====
 *Principe 2 - DF Source Multi-Attributs == DMR*
 
-Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple (A,B,C) -> D,E ) se doit d'être une
+Toute source multi-attributs d'une DF (DF à partie gauche composée, par exemple `(A,B,C) -> D,E`  se doit d'être une
 DMR *élémentaire*, *directe* et *réciproque* entre ses membres (prévisage d'une relation type many-to-many).
 
 En appliquant la réflexivité, nous pouvons exprimer cette règle ainsi :
 
-  (A, B) -> (A, B)   <=>   A -->>o<<-- B   <=>   (A,B)
+  (A,B) -> (A,B)   <=>   A -->>o<<-- B   <=>   (A,B)
 
-NOTE: pour les source à n attributs, il faut vérifier les qualités directes et élémentaires.
+NOTE: Il faut toujours vérifier les qualités directes et élémentaires entre attributs d'une source.
 
-  (A, B, C)  <=>   A -->>o<<-- B , A -->>o<<-- C, B -->>o<<-- C
-  et vérifier l'absence d'une DF cachée comme : (B, C) -> A par exemple (en application du principe 1)
+  (A, B, C)  <=>   A -->>o<<-- B , A -->>o<<-- C, B -->>o<<-- C, A -->> B,C, B ->> A,C et C ->> A,B
+
+et vérifier l'absence d'une DF cachée comme : (B, C) -> A par exemple (en application du principe 1)
 
 ====
 
@@ -519,8 +525,8 @@ TIP: indices : A/ L'historicité d'un emprunt peut ne pas être garanti.  B/ Pr�
 Le service informatique de l'organisation X, organisée en départements, souhaite modéliser le fait
 qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os),
 à une date donnée, à la demande d'un département de l'entreprise (id, nom, budget).
-Botez que ce genre de demande (installation et mise à disposition d'un logiciel) ne peut être honorée que si le dit département ne dispose pas déjà d'une version
-de ce même logiciel sur un des serveurs de l'entreprise.
+Noter que ce genre de demande (installation et mise à disposition d'un logiciel) ne peut être honorée que si
+le dit département ne dispose pas déjà d'une version de ce même logiciel sur un des serveurs de l'entreprise.
 
 * Établir le GD ainsi qu'un MCD correspondant.
 
