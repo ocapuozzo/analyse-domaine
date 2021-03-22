@@ -430,7 +430,9 @@ image:gd-3.png[title="classe association"]&#160;
 
 |
 `(A,B) -\-> C`
+
 `E -\-> C`
+
 `C -\-> D`
 
 ----------------------------------------------
@@ -524,7 +526,7 @@ TIP: indices : A/ L'historicité d'un emprunt peut ne pas être garanti.  B/ Pr�
 
 Le service informatique de l'organisation X, organisée en départements, souhaite modéliser le fait
 qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os),
-à une date donnée, à la demande d'un département de l'entreprise (id, nom, budget).
+à une date donnée (dateInstallation), à la demande d'un département de l'entreprise (id, nom, budget).
 Noter que ce genre de demande (installation et mise à disposition d'un logiciel) ne peut être honorée que si
 le dit département ne dispose pas déjà d'une version de ce même logiciel sur un des serveurs de l'entreprise.
 
@@ -766,7 +768,7 @@ image:diagUML-analyse-sr.png[title="ManyToOne"]
 Pour déterminer où placer la DF, il faut se demander qui, des deux entités,
 est susceptible d'être instanciée avant l'autre !
 
-image:diagUML-analyse-sr-ManyToOne.png[title="OneToOne"]
+image:diagUML-analyse-sr-OneToOne.png[title="OneToOne"]
 
 === ManyToMany
 
