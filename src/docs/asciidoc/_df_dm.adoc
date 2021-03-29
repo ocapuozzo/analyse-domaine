@@ -516,13 +516,17 @@ idEtat -> LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATION',
 
 * L'analyse de votre collègue a quelques défauts. Tachez de les détecter et de corriger son analyse.
 
-TIP: indices : A/ L'historicité d'un emprunt peut ne pas être garanti.  B/ Présence d'une DF non directe !
+[TIP]
+====
+Indices :
+
+* Présence d'une DF non directe !
+* L'historicité d'un emprunt peut ne pas être garanti.
+====
 
 * Établir le GD ainsi qu'un MCD correspondant.
 
-
 ==== Ex 4
-
 
 Le service informatique de l'organisation X, organisée en départements, souhaite modéliser le fait
 qu'un logiciel (id, nom, éditeur) a été installé sur un serveur (id, nom, os),
@@ -534,7 +538,7 @@ le dit département ne dispose pas déjà d'une version de ce même logiciel sur
 
 ==== Ex 5
 
-On a demandé à un analyste de modéliser le domaine métier d'un quicailler.
+On a demandé à un analyste de modéliser le domaine métier d'une quincaillerie professionnelle.
 Dans ce but, il décide de rencontrer un vendeur la quincaillerie.
 
 Dialogue dans une quincaillerie de détail :
@@ -559,13 +563,12 @@ A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez
 
 == Formes Normales
 
-On entend par _forme normale_ (en anglais _normal form_), un système de règles qui
-qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, ... 6FN)
+On entend par _forme normale_ (en anglais _normal form_), un système de règles qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, ... 6FN)
 
-Les formes normales ont été introduites par Edgar F. Codd (modèle relationnel).
+Les formes normales ont été introduites par Edgar Frank Codd (1923-2003), informaticien britannique considéré comme le père du modèle relationnel.
 
 Il est courant de dire qu'une base de données relationnelle est *_normalisée_* si elle est au minimum en troisième
-forme normale. Un tel niveau de normalisation prémunie le modèle d'anomalies d'insertion, de mise à jour
+forme normale (3FN). Un tel niveau de normalisation prémunie le modèle d'anomalies d'insertion, de mise à jour
 et de suppression, et participe à l'*intégrité* du système.
 
 
@@ -573,8 +576,7 @@ et de suppression, et participe à l'*intégrité* du système.
 ====
 
 En cas de problème de cohérence de données ou de mauvaise performance, l'analyse qualitative du modèle
-(minimum 3FN) est très souvent l'objet du premier audit. Le but étant de *vérifier la robustesse de la conception*, l'absence de
-de redondance et les problèmes sous-jacents.
+(minimum 3FN) est très souvent l'objet du premier audit. Le but étant de *vérifier la robustesse de la conception*, l'absence de redondance et les problèmes sous-jacents.
 
 La normalisation s’applique à toutes les entités et aux associations porteuses de propriétés.
 ====
@@ -682,6 +684,8 @@ car elle n’est pas élémentaire. Il existe un DF entre la propriété N°Chef
 
 image:GD2FN.png[title="gd 2FN"]
 
+TIP: Vous remarquerez que la dépendance multivaluée (N°Chantier, DateDébutChantier) n'est en fait pas réciproque et n'aurait pas dû être retenue.
+
 === 3FN
 
 ====
@@ -734,10 +738,10 @@ image:GD3FNBC.png[title="gd 3FNBC"]
 
 === 4FN et plus
 
-Concerne les DMR. En prenant soin de concevoir (et de ne retenir) que des dépendances
-directes et élémentaires (et réciproques pour les DM), et de vous assurer que les seules
-dépendances de la relation sont celles qui lient la clé avec les autres attributs,
-vous vous assurez que votre modèle sera en 4FN.
+Concerne les DMR.
+
+En prenant soin de concevoir (et de ne retenir) que des dépendances
+mutivaluées réciproques directes et élémentaires, vous vous assurez que les seules dépendances de la relation sont celles qui lient la clé avec les autres attributs. Votre sera alors en 4FN.
 
 === Exercices
 
@@ -750,9 +754,8 @@ font l'objet d'un contrôle qualité visé par un personnel qualifié.
 Concevoir un GD puis une MCD.
 
 
-== Modèle de domaine vers SR
-Ce chapitre présente les principaux cas d’implémentation d’une analyse métier représenté
-par un diagramme de classes du domaine métier (UML), en particulier les associations *ManyToOne*,
+== Modèle de domaine vers Schéma Relationnel
+Ce chapitre présente les principaux cas d’implémentation d’une analyse métier, représenté par un diagramme de classes du domaine métier (UML), vers un SR, en particulier via les associations *ManyToOne*,
 *OneToOne*, *ManyToMany* et *ManyToMany porteuse de propriétés*.
 
 L’héritage fait l’objet d’un autre document.

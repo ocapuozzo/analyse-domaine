@@ -68,7 +68,7 @@
 <li><a href="#exercices-2">Exercices</a></li>
 </ul>
 </li>
-<li><a href="#modèle-de-domaine-vers-sr">Modèle de domaine vers SR</a>
+<li><a href="#modèle-de-domaine-vers-schéma-relationnel">Modèle de domaine vers Schéma Relationnel</a>
 <ul class="sectlevel3">
 <li><a href="#manytoone">ManyToOne</a></li>
 <li><a href="#onetoone">OneToOne</a></li>
@@ -881,7 +881,19 @@ idEtat -&gt; LibEtat  # {'EXCELLENT', 'TRES  BON', 'BON', 'MOYEN', 'EN REPARATIO
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-indices : A/ L&#8217;historicité d&#8217;un emprunt peut ne pas être garanti.  B/ Présence d&#8217;une DF non directe !
+<div class="paragraph">
+<p>Indices :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Présence d&#8217;une DF non directe !</p>
+</li>
+<li>
+<p>L&#8217;historicité d&#8217;un emprunt peut ne pas être garanti.</p>
+</li>
+</ul>
+</div>
 </td>
 </tr>
 </table>
@@ -914,7 +926,7 @@ le dit département ne dispose pas déjà d&#8217;une version de ce même logici
 <div class="sect4">
 <h5 id="ex-5"><a class="anchor" href="#ex-5"></a>Ex 5</h5>
 <div class="paragraph">
-<p>On a demandé à un analyste de modéliser le domaine métier d&#8217;un quicailler.
+<p>On a demandé à un analyste de modéliser le domaine métier d&#8217;une quincaillerie professionnelle.
 Dans ce but, il décide de rencontrer un vendeur la quincaillerie.</p>
 </div>
 <div class="paragraph">
@@ -961,15 +973,14 @@ Dans ce but, il décide de rencontrer un vendeur la quincaillerie.</p>
 <div class="sect2">
 <h3 id="formes-normales"><a class="anchor" href="#formes-normales"></a>Formes Normales</h3>
 <div class="paragraph">
-<p>On entend par <em>forme normale</em> (en anglais <em>normal form</em>), un système de règles qui
-qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, &#8230;&#8203; 6FN)</p>
+<p>On entend par <em>forme normale</em> (en anglais <em>normal form</em>), un système de règles qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, &#8230;&#8203; 6FN)</p>
 </div>
 <div class="paragraph">
-<p>Les formes normales ont été introduites par Edgar F. Codd (modèle relationnel).</p>
+<p>Les formes normales ont été introduites par Edgar Frank Codd (1923-2003), informaticien britannique considéré comme le père du modèle relationnel.</p>
 </div>
 <div class="paragraph">
 <p>Il est courant de dire qu&#8217;une base de données relationnelle est <strong><em>normalisée</em></strong> si elle est au minimum en troisième
-forme normale. Un tel niveau de normalisation prémunie le modèle d&#8217;anomalies d&#8217;insertion, de mise à jour
+forme normale (3FN). Un tel niveau de normalisation prémunie le modèle d&#8217;anomalies d&#8217;insertion, de mise à jour
 et de suppression, et participe à l'<strong>intégrité</strong> du système.</p>
 </div>
 <div class="admonitionblock note">
@@ -981,8 +992,7 @@ et de suppression, et participe à l'<strong>intégrité</strong> du système.</
 <td class="content">
 <div class="paragraph">
 <p>En cas de problème de cohérence de données ou de mauvaise performance, l&#8217;analyse qualitative du modèle
-(minimum 3FN) est très souvent l&#8217;objet du premier audit. Le but étant de <strong>vérifier la robustesse de la conception</strong>, l&#8217;absence de
-de redondance et les problèmes sous-jacents.</p>
+(minimum 3FN) est très souvent l&#8217;objet du premier audit. Le but étant de <strong>vérifier la robustesse de la conception</strong>, l&#8217;absence de redondance et les problèmes sous-jacents.</p>
 </div>
 <div class="paragraph">
 <p>La normalisation s’applique à toutes les entités et aux associations porteuses de propriétés.</p>
@@ -1184,6 +1194,18 @@ car elle n’est pas élémentaire. Il existe un DF entre la propriété N°Chef
 <div class="paragraph">
 <p><span class="image"><img src="images/GD2FN.png" alt="GD2FN" title="gd 2FN"></span></p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Vous remarquerez que la dépendance multivaluée (N°Chantier, DateDébutChantier) n&#8217;est en fait pas réciproque et n&#8217;aurait pas dû être retenue.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="3fn"><a class="anchor" href="#3fn"></a>3FN</h4>
@@ -1259,10 +1281,11 @@ En effet il existe une DF directe et élémentaire entre une propriété non-cl�
 <div class="sect3">
 <h4 id="4fn-et-plus"><a class="anchor" href="#4fn-et-plus"></a>4FN et plus</h4>
 <div class="paragraph">
-<p>Concerne les DMR. En prenant soin de concevoir (et de ne retenir) que des dépendances
-directes et élémentaires (et réciproques pour les DM), et de vous assurer que les seules
-dépendances de la relation sont celles qui lient la clé avec les autres attributs,
-vous vous assurez que votre modèle sera en 4FN.</p>
+<p>Concerne les DMR.</p>
+</div>
+<div class="paragraph">
+<p>En prenant soin de concevoir (et de ne retenir) que des dépendances
+mutivaluées réciproques directes et élémentaires, vous vous assurez que les seules dépendances de la relation sont celles qui lient la clé avec les autres attributs. Votre sera alors en 4FN.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1282,10 +1305,9 @@ font l&#8217;objet d&#8217;un contrôle qualité visé par un personnel qualifi�
 </div>
 </div>
 <div class="sect2">
-<h3 id="modèle-de-domaine-vers-sr"><a class="anchor" href="#modèle-de-domaine-vers-sr"></a>Modèle de domaine vers SR</h3>
+<h3 id="modèle-de-domaine-vers-schéma-relationnel"><a class="anchor" href="#modèle-de-domaine-vers-schéma-relationnel"></a>Modèle de domaine vers Schéma Relationnel</h3>
 <div class="paragraph">
-<p>Ce chapitre présente les principaux cas d’implémentation d’une analyse métier représenté
-par un diagramme de classes du domaine métier (UML), en particulier les associations <strong>ManyToOne</strong>,
+<p>Ce chapitre présente les principaux cas d’implémentation d’une analyse métier, représenté par un diagramme de classes du domaine métier (UML), vers un SR, en particulier via les associations <strong>ManyToOne</strong>,
 <strong>OneToOne</strong>, <strong>ManyToMany</strong> et <strong>ManyToMany porteuse de propriétés</strong>.</p>
 </div>
 <div class="paragraph">
