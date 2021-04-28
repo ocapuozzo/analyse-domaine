@@ -561,6 +561,49 @@ A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez
 
 * Établir le GD ainsi qu'un MCD correspondant.
 
+==== Ex 6
+
+(extrait étude de cas BioCoop)
+
+*Mission C.1*
+
+Les caractéristiques des magasins et des sociétaires ont été exportées du PGI et importées dans la nouvelle base de données utilisée par l’outil de suivi. Votre cheffe de projet vous demande de faire évoluer la structure de la base de données pour qu'elle intègre les données nécessaires au suivi des engagements sociétaires.
+Le schéma initial de la base de données est le suivant
+
+image:diag-ex6.png[title="analyse initiale"]&#160;
+
+*Les engagements du cahier des charges*
+
+Chaque engagement du cahier des charges comporte plusieurs critères.
+Chaque critère n’est observable et/ou mesurable qu’au sein d’un seul engagement, va porter un
+nom et sera détaillé pour préciser d’une part la valeur cible, et d’autre part le moyen de contrôler
+l’atteinte de cette valeur cible.
+Par exemple, le critère de nom « Fruits et légumes bio » a pour valeur cible « Tous les fruits et
+légumes doivent être bio, pas de dérogation » et le moyen de contrôle consiste à « Vérifier la
+conformité du rayon par sondage, en particulier les champignons et les fruits exotiques. ».
+
+*Gestion des visites de contrôle*
+
+Une visite de contrôle ne porte que sur un seul engagement pour lequel chacun des critères sera
+estimé conforme ou non conforme.
+Une visite de contrôle est réalisée par un organisme de certification indépendant mandaté par
+Biocoop.
+Pour chaque visite, on conservera également le commentaire de l’organisme de certification et
+celui du directeur du magasin concernant les éventuelles actions correctives à réaliser par le
+magasin.
+
+*Engagements Sociétaires*
+
+Les commissions d’évaluation des engagements sociétaires (EES) sont constituées de sociétaires.
+Plusieurs commissions EES sont programmées à une date donnée.
+Une semaine avant la date de réunion des commissions, chaque visite de contrôle effectuée est
+affectée à une commission qui sera chargée d’examiner le résultat de contrôle correspondant.
+Elle devra ensuite prononcer, pour chaque visite examinée, une décision choisie dans la liste
+suivante : engagement respecté sans réserve, engagement respecté avec réserves en attente de
+documents complémentaires, contre-visite nécessaire, exclusion du réseau Biocoop.
+
+* Établir le GD ainsi qu'un MCD correspondant.
+
 == Formes Normales
 
 On entend par _forme normale_ (en anglais _normal form_), un système de règles qui permet de caractériser un modèle, selon une terminologie numérotée (1FN, 2FN, 3FN, ... 6FN)
