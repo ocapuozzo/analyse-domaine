@@ -463,10 +463,17 @@ Vous trouverez un autre exemple dans le chapitre MCD vers SR (entité `Documenta
 
 à venir
 
+
+
+////
+
 === Exemple de conduite d'analyse
 
-Su la base d'une petite étude de cas improvisée avec le concours
+
+Sur la base d'une petite étude de cas improvisée avec le concours
 d'étudiants en ligne : link:assets/etude-de-cas-exemple-vote.pdf[etude-de-cas-exemple-vote.pdf] (link:assets/etude-de-cas-exemple-vote.odt[source odt])
+
+////
 
 === Exercices
 
@@ -563,11 +570,28 @@ A : merci, donc le 18 mars 2015 vous avez passé la commande numéro 001245 chez
 
 ==== Ex 6
 
-(extrait étude de cas BioCoop)
+Contexte : Covid et enseignement à distance
+
+Lors d’un confinement, s’est posé le problème de définir une heure de début du cours du matin. Un étudiant a trouvé bon de lancer un vote à ce sujet. Tous les étudiants de la classe ont reçu un lien vers le formulaire ci-dessous :
+
+image:sondage-1.png[sondage 1]
+
+Voici la vue de synthèse dès après que quelques étudiants se soient positionnés :
+
+image:sondage-2.png[sondage 2]
+
+[start=6]
+.  Votre travail consiste à réaliser une (rétro-)analyse du domaine de l'application de vote (on n'a pas le code source de cette application), qui doit aboutir sur la production
+.. d’un diagramme de classes UML représentant les entités du domaine et leurs relations
+.. un Schéma Relationnel.
+
+==== Ex 7
 
 *Mission C.1*
 
-Les caractéristiques des magasins et des sociétaires ont été exportées du PGI et importées dans la nouvelle base de données utilisée par l’outil de suivi. Votre cheffe de projet vous demande de faire évoluer la structure de la base de données pour qu'elle intègre les données nécessaires au suivi des engagements sociétaires.
+Contexte : chaine de magasins
+
+Les caractéristiques des magasins et des sociétaires ont été exportées du PGI et importées dans la nouvelle base de données utilisée par un outil de suivi. Votre cheffe de projet vous demande de faire évoluer la structure de la base de données pour qu'elle intègre les données nécessaires au suivi des engagements sociétaires.
 Le schéma initial de la base de données est le suivant
 
 image:diag-ex6.png[title="analyse initiale"]&#160;

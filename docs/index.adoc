@@ -1,11 +1,11 @@
 = Analyse, une introduction
 O. Capuozzo
-v1.0, 2020-03-20: Version asciidoc
+v1.1, 2023-04-26: Version asciidoc
 :description: aide méthodologique à l'analyse du domaine
 :icons: font
 :listing-caption: Listing
 :toc-title: Table des matieres
-:toc:
+:toc: left
 :toclevels: 3
 :source-highlighter: coderay
 ifdef::backend-pdf[]
