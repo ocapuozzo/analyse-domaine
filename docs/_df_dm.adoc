@@ -1,8 +1,5 @@
 = Notions de DF et DMR
-ifndef::backend-pdf[]
 :imagesdir: images
-endif::[]
-
 == Introduction
 
 En phase d'analyse, la collecte des données et leurs relations est au centre des préoccupations.
@@ -10,7 +7,7 @@ En phase d'analyse, la collecte des données et leurs relations est au centre de
 
 image:analyse-artefacts.png[title="artefacts et analyse"]
 
-Après avoir indentifier des concepts métier clés, ces derniers seront **regroupés** (en référence au concept d'_encapsulation_ et de _classe_) et placés
+Après avoir identifier des concepts métier clés, ces derniers seront **regroupés** (en référence au concept d'_encapsulation_ et de _classe_) et placés
 en relation de dépendances (_association_, _heritage_).
 
 Notion de **D**épendance **F**onctionnelle (*DF*) et **D**épendance **M**ultivaluée (*DM*)
@@ -18,7 +15,7 @@ Notion de **D**épendance **F**onctionnelle (*DF*) et **D**épendance **M**ultiv
 
 == Dépendance Fonctionnelle
 
-soit A et B, deux données (concept métier) du système.
+Soit A et B, deux données (concept métier) du système.
 
 ====
 
@@ -477,7 +474,7 @@ d'étudiants en ligne : link:assets/etude-de-cas-exemple-vote.pdf[etude-de-cas-e
 
 === Exercices
 
-==== Ex 1
+==== Ex 2
 
 D'après les DF suivantes, construisez un GD et MCD
 ----
